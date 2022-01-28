@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { config, componentStore } from '~/components/config.store';
-	import Menu from '~/components/ViewerMenu.svelte';
-	import IframeApp from '~/components/IframeApp.svelte';
+	import { config, componentStore } from '$lib/config.store';
+	import Menu from '$lib/ViewerMenu.svelte';
+	import IframeApp from '$lib/IframeApp.svelte';
 
 	export let props = '';
 

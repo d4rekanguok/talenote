@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { config } from '~/components/config.store';
+	import { config } from '$lib/config.store';
 	export let viewerWidth;
 	export let setViewerWidth;
 	export let allowCustomWidth;

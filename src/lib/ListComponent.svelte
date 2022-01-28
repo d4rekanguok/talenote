@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { state, config } from '~/components/config.store';
+	import { state, config } from '$lib/config.store';
 
 	const setCurrentByName = (name: string) => () => {
 		$state.currentComponentName = name;

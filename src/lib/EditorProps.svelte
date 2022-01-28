@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { componentStore } from '~/components/config.store';
+	import { componentStore } from '$lib/config.store';
 	export let props: string;
 
 	let error: null | string = null;

@@ -1,6 +1,6 @@
 import { api } from './_api';
 import type { RequestHandler } from '@sveltejs/kit';
-import type { Locals } from '$lib/types';
+import type { Locals } from '~/components/types';
 
 // GET /todos.json
 export const get: RequestHandler<Locals> = async (request) => {

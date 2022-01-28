@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { enhance } from '$lib/form';
+	import { enhance } from '~/components/form';
 	import type { Load } from '@sveltejs/kit';
 
 	// see https://kit.svelte.dev/docs#loading

@@ -9,9 +9,9 @@
 
 <Boundary onError={console.error}>
 	{#if Wrapper}
-		<Wrapper>
+		<svelte:component this={Wrapper}>
 			<svelte:component this={Component} {...componentProps} />
-		</Wrapper>
+		</svelte:component>
 	{:else}
 		<svelte:component this={Component} {...componentProps} />
 	{/if}

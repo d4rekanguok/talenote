@@ -1,12 +1,12 @@
 <script context="module">
-	export { config } from '~/components/config.store';
+	export { config } from '$lib/config.store';
 </script>
 
 <script lang="ts">
 	import 'modern-normalize';
-	import ListComponent from '~/components/ListComponent.svelte';
-	import EditorProps from '~/components/EditorProps.svelte';
-	import Viewer from '~/components/Viewer.svelte';
+	import ListComponent from '$lib/ListComponent.svelte';
+	import EditorProps from '$lib/EditorProps.svelte';
+	import Viewer from '$lib/Viewer.svelte';
 
 	let props = '';
 </script>

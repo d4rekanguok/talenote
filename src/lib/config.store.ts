@@ -1,5 +1,5 @@
 import { writable, derived } from 'svelte/store';
-import WrapperCenter from '~/components/WrapperCenter.svelte';
+import WrapperCenter from '$lib/WrapperCenter.svelte';
 
 const defaultWrappers = {
 	center: WrapperCenter
