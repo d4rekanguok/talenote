@@ -1,7 +1,3 @@
-<script context="module">
-	export { config } from '$lib/config.store';
-</script>
-
 <script lang="ts">
 	import 'modern-normalize';
 	import ListComponent from '$lib/ListComponent.svelte';

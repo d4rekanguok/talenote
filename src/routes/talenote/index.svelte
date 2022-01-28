@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import TaleNote, { config } from '$lib/TaleNote.svelte';
+	import { config, TaleNote } from '$lib';
 	import CustomWrapper from './_CustomWrapper.svelte';
 
 	const getComponentName = (name: string) => name.split('/src/components/')[1].split('.svelte')[0];
