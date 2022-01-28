@@ -4,6 +4,7 @@
 	export let modules = {};
 	export let getComponentName = (v) => v;
 	export let viewerWidthPreset = [360, 480, 720, 800, 1200];
+	export let wrappers = {};
 
 	$: componentNames = Object.keys(modules);
 	// import { Boundary } from '@crownframework/svelte-error-boundary'
@@ -48,8 +49,9 @@
 	};
 
 	let renderedComponent;
-	const wrapperIndex = {
-		center: WrapperCenter
+	$: wrapperIndex = {
+		center: WrapperCenter,
+		...wrappers
 	};
 
 	onMount(() => {
