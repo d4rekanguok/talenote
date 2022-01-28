@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { config, componentStore } from '~/components/config.store';
 	import Menu from '~/components/ViewerMenu.svelte';
