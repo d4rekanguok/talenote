@@ -11,11 +11,14 @@
 
 	import Menu from '~/components/Menu.svelte';
 	import ListComponent from '~/components/ListComponent.svelte';
-	import EditorProps from '~/components/EditorProps.svelte'
+	import EditorProps from '~/components/EditorProps.svelte';
+	import IframeApp from '~/components/IframeApp.svelte';
+	import WrapperCenter from '~/components/WrapperCenter.svelte';
 
 	$: current = componentNames?.[0];
 	let Component;
 	let props = {};
+	let wrapperId = '';
 	let viewerEl: HTMLIFrameElement;
 	let viewerWidth = null;
 	let allowCustomWidth = false;
@@ -23,8 +26,10 @@
 
 	const loadComponent = async (current) => {
 		try {
-			Component = modules[current].default;
-			props = modules[current].defaultProps || {};
+			const imported = modules[current];
+			Component = imported.default;
+			props = imported.defaultProps || {};
+			wrapperId = imported.taleWrapper || '';
 		} catch (err) {
 			console.error(err);
 		}
@@ -43,6 +48,9 @@
 	};
 
 	let renderedComponent;
+	const wrapperIndex = {
+		center: WrapperCenter
+	};
 
 	onMount(() => {
 		const styles = Array.from(document.head.querySelectorAll('style')).map((node) =>
@@ -54,9 +62,13 @@
 	afterUpdate(() => {
 		if (!Component) return;
 		renderedComponent?.$destroy?.();
-		renderedComponent = new Component({
+		renderedComponent = new IframeApp({
 			target: viewerEl.contentWindow.document.body,
-			props
+			props: {
+				Component,
+				Wrapper: wrapperIndex[wrapperId] || null,
+				componentProps: props
+			}
 		});
 	});
 </script>
