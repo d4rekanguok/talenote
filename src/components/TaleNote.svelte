@@ -7,7 +7,6 @@
 	export let wrappers = {};
 
 	$: componentNames = Object.keys(modules);
-	// import { Boundary } from '@crownframework/svelte-error-boundary'
 	import { afterUpdate, onMount } from 'svelte';
 
 	import Menu from '~/components/Menu.svelte';
