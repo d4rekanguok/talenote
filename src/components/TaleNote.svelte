@@ -2,14 +2,16 @@
 	import 'modern-normalize';
 
 	export let modules = {};
+	export let getComponentName = (v) => v;
 	export let viewerWidthPreset = [360, 480, 720, 800, 1200];
 
 	$: componentNames = Object.keys(modules);
 	// import { Boundary } from '@crownframework/svelte-error-boundary'
-	import { browser } from '$app/env';
 	import { afterUpdate, onMount } from 'svelte';
 
 	import Menu from '~/components/Menu.svelte';
+	import ListComponent from '~/components/ListComponent.svelte';
+	import EditorProps from '~/components/EditorProps.svelte'
 
 	$: current = componentNames?.[0];
 	let Component;
@@ -29,11 +31,6 @@
 	};
 	const setCurrentByName = (name: string) => () => {
 		current = name;
-	};
-
-	const onPropsChange = (e) => {
-		const value = e.target.propContent.value;
-		props = JSON.parse(value);
 	};
 
 	const setViewerWidth = (w: number) => () => {
@@ -68,28 +65,11 @@
 	<div data-grid="container" class="container">
 		<section data-grid="a" class="overflow-y-scroll">
 			<h1 class="section-header">Components</h1>
-			<ul class="relative">
-				{#each componentNames as name (name)}
-					<li class:dim={name === current}>
-						<button on:click={setCurrentByName(name)}>
-							{name.split('/src/lib/')[1] || ''}
-						</button>
-					</li>
-				{/each}
-			</ul>
+			<ListComponent {...{ current, setCurrentByName, getComponentName, componentNames }} />
 		</section>
 		<section data-grid="b" class="overflow-y-scroll">
 			<h1 class="section-header">Props</h1>
-			{#if browser && props}
-				<form on:submit|preventDefault={onPropsChange}>
-					<textarea name="propContent" rows={10} class="w-full p-2 border border-blue-200 font-mono"
-						>{JSON.stringify(props, null, 2)}</textarea
-					>
-					<button type="submit" class="bg-blue-500 text-white px-4 py-2">Update</button>
-				</form>
-			{:else}
-				No defaultProps found
-			{/if}
+			<EditorProps bind:props />
 		</section>
 		<section data-grid="c" class="viewer-container">
 			<div class="viewer-menu">
@@ -189,9 +169,5 @@
 		height: 100%;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-	}
-
-	.dim {
-		opacity: 0.4;
 	}
 </style>
