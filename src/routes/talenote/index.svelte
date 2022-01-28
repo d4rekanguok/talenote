@@ -1,15 +1,22 @@
 <script context="module" lang="ts">
 	const modules = import.meta.globEager('/src/lib/**/*.svelte');
-	const getComponentName = (name: string) => name.split('/src/lib/')[1];
 </script>
 
 <script lang="ts">
-	import TaleNote from '~/components/TaleNote.svelte';
+	import TaleNote, { config } from '~/components/TaleNote.svelte';
 	import CustomWrapper from './_CustomWrapper.svelte';
+
+	const getComponentName = (name: string) => name.split('/src/lib/')[1].split('.svelte')[0];
 
 	const wrappers = {
 		custom: CustomWrapper
 	};
+
+	config.init({
+		modules,
+		getComponentName,
+		wrappers
+	});
 </script>
 
-<TaleNote {modules} {getComponentName} {wrappers} />
+<TaleNote />

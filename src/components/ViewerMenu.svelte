@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { config } from '~/components/config.store';
 	export let viewerWidth;
 	export let setViewerWidth;
 	export let allowCustomWidth;
 	export let setAllowCustomWidth;
-	export let viewerWidthPreset;
 </script>
 
 <menu class="inline-flex">
@@ -12,7 +12,7 @@
 		class:highlight={!viewerWidth && !allowCustomWidth}
 		on:click={setViewerWidth(null)}>Full</button
 	>
-	{#each viewerWidthPreset as w (w)}
+	{#each $config.viewerWidthPreset as w (w)}
 		<button
 			on:click={setViewerWidth(w)}
 			class="btn-width"
@@ -29,11 +29,18 @@
 
 <style>
 	.btn-width {
-		padding: 0.5rem 0.25rem;
+		border: none;
+		border-radius: 4px;
+		padding: 0 0.6rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--color-bg);
+		height: 2.25rem;
 	}
 
 	.btn-width.highlight {
-		background-color: var(--colors-main-500);
-		color: var(--color-white);
+		background-color: var(--color-main-500);
+		color: var(--color-text-on-dark);
 	}
 </style>

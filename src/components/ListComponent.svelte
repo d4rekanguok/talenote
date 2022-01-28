@@ -1,39 +1,41 @@
 <script lang="ts">
-	export let componentNames: string[];
-	export let setCurrentByName: (name: string) => (e: MouseEvent) => void;
-	export let current: string;
-	export let getComponentName: (name: string) => string;
+	import { state, config } from '~/components/config.store';
+
+	const setCurrentByName = (name: string) => () => {
+		$state.currentComponentName = name;
+	};
 </script>
 
 <ul class="component-list">
-	{#each componentNames as name (name)}
-		<li class="component-item" class:dim={name === current}>
+	{#each $config.componentNames as name (name)}
+		<li class="component-item" class:active={name === $state.currentComponentName}>
 			<button class="component-name" on:click={setCurrentByName(name)}>
-				{getComponentName(name) || ''}
+				{$config.getComponentName(name) || ''}
 			</button>
 		</li>
 	{/each}
 </ul>
 
 <style>
-	.dim {
-		opacity: 0.4;
+	.active button {
+		color: var(--color-main-500);
+        font-weight: bold;
 	}
 
-    .component-list {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-    }
+	.component-list {
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
 
-    .component-item {
-        padding: 0.25rem 0;
-    }
+	.component-item {
+		padding: 0.25rem 0;
+	}
 
-    button.component-name {
-        appearance: none;
-        border: none;
-        background: none;
-        font-size: 1.1rem;
-    }
+	button.component-name {
+		appearance: none;
+		border: none;
+		background: none;
+		font-size: 1.1rem;
+	}
 </style>
