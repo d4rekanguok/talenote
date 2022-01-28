@@ -19,6 +19,11 @@ const config = {
 					'~': path.resolve('./src')
 				}
 			}
+		},
+		package: {
+			exports: (filepath) => {
+				return filepath.includes('index.ts');
+			}
 		}
 	}
 };
