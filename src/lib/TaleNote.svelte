@@ -74,6 +74,7 @@
 	.section-header {
 		margin-bottom: 1rem;
 		font-size: 1.5rem;
+		font-weight: bold;
 		padding: 0 0.5rem;
 		background-color: var(--color-bg);
 		top: 0;
