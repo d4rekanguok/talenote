@@ -4,10 +4,21 @@
 	const setCurrentByName = (name: string) => () => {
 		$state.currentComponentName = name;
 	};
+
+	const syncComponentList = (e: MessageEvent) => {
+		const { type, payload } = e.data
+		if (type === 'componentList') {
+			$state.componentNames = payload
+		}
+	}
+
+	$: console.log($state.componentNames)
 </script>
 
+<!-- <svelte:window on:message={syncComponentList}></svelte:window> -->
+
 <ul class="component-list">
-	{#each $config.componentNames as name (name)}
+	{#each $state.componentNames as name (name)}
 		<li class="component-item" class:active={name === $state.currentComponentName}>
 			<button class="component-name" on:click={setCurrentByName(name)}>
 				{$config.getComponentName(name) || ''}

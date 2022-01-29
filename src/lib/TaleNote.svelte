@@ -1,10 +1,10 @@
 <script lang="ts">
-	import 'modern-normalize';
+	import 'modern-normalize/modern-normalize.css';
 	import ListComponent from '$lib/ListComponent.svelte';
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
 
-	let props = '';
+	let viewEl: HTMLIFrameElement = null
 </script>
 
 <main>
@@ -15,10 +15,10 @@
 		</section>
 		<section data-grid="b" class="overflow-y-scroll">
 			<h1 class="section-header">Props</h1>
-			<EditorProps bind:props />
+			<EditorProps {viewEl} />
 		</section>
 		<section data-grid="c" class="viewer-container">
-			<Viewer {props} />
+			<Viewer bind:viewEl />
 		</section>
 	</div>
 </main>
@@ -38,6 +38,8 @@
 		--color-text-on-light: #0f172a;
 		--color-text-on-dark: var(--color-white);
 		--color-bg: var(--color-white);
+		--color-bg-lighter: var(--color-gray-100);
+		--ring-main: 0 0 0 2px var(--color-main-700);
 
 		color: var(--color-text-on-light);
 	}
@@ -72,6 +74,7 @@
 	.section-header {
 		margin-bottom: 1rem;
 		font-size: 1.5rem;
+		font-weight: bold;
 		padding: 0 0.5rem;
 		background-color: var(--color-bg);
 		top: 0;

@@ -1,25 +1,48 @@
 <script lang="ts">
-	import { componentStore } from '$lib/config.store';
-	export let props: string;
+	import { componentData } from '$lib/config.store';
 
+	export let viewEl: HTMLIFrameElement;
 	let error: null | string = null;
+	let propContentEl: HTMLTextAreaElement;
 
-	const onPropsChange = (e: SubmitEvent) => {
-		const { value } = e.target['propContent'];
+	$: defaultProps = JSON.stringify($componentData.defaultProps, null, 2);
+
+	const handlePropsUpdate = (e: SubmitEvent) => {
+		const { value } = propContentEl;
 		try {
-			JSON.parse(value);
-			props = value;
-            error = null;
+			const props = JSON.parse(value);
+			viewEl.contentWindow.postMessage(
+				{
+					type: 'componentProps',
+					payload: props
+				},
+				'*'
+			);
+			error = null;
 		} catch (err) {
 			error = err.message;
 		}
 	};
+
+	const handleReset = () => {
+		viewEl.contentWindow.postMessage(
+			{
+				type: 'componentPropsReset'
+			},
+			'*'
+		);
+		propContentEl.value = defaultProps;
+	};
 </script>
 
-{#if $componentStore.defaultProps}
-	<form on:submit|preventDefault={onPropsChange}>
-		<textarea spellcheck={false} name="propContent" rows={10} class="props-editor"
-			>{JSON.stringify($componentStore.defaultProps, null, 2)}</textarea
+{#if $componentData.defaultProps}
+	<form on:submit|preventDefault={handlePropsUpdate}>
+		<textarea
+			bind:this={propContentEl}
+			spellcheck={false}
+			name="propContent"
+			rows={10}
+			class="props-editor">{defaultProps}</textarea
 		>
 		{#if error}
 			<div class="container-error">
@@ -27,7 +50,7 @@
 			</div>
 		{/if}
 		<div class="container-btn">
-            <button type="button" class="btn-reset">Reset</button>
+			<button type="button" on:click={handleReset} class="btn-reset">Reset</button>
 			<button type="submit" class="btn-submit">Update</button>
 		</div>
 	</form>
@@ -47,19 +70,23 @@
 		border-radius: 8px;
 	}
 
-    .container-btn {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+	.container-btn {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 
-    .btn-reset {
-        border: none;
-        padding: 0.5rem 0.8rem;
-        border-radius: 4px;
-        background-color: transparent;
-        color: var(--color-text-on-light);
-    }
+	.btn-reset {
+		border: none;
+		padding: 0.5rem 0.8rem;
+		border-radius: 4px;
+		background-color: transparent;
+		color: var(--color-text-on-light);
+	}
+
+	.btn-reset:hover {
+		background-color: var(--color-bg-lighter);
+	}
 
 	.btn-submit {
 		padding: 0.5rem 0.8rem;
@@ -69,9 +96,14 @@
 		background-color: var(--color-main-500);
 	}
 
-    .btn-reset:focus, .btn-submit:focus {
-        box-shadow: 0 0 0 2px var(--color-main-700);
-    }
+	.btn-submit:hover {
+		background-color: var(--color-main-700);
+	}
+
+	.btn-reset:focus,
+	.btn-submit:focus {
+		box-shadow: var(--ring-main);
+	}
 
 	.container-error {
 		padding: 0.8rem 1rem;

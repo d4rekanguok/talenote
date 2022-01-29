@@ -1,18 +1,93 @@
-<script>
-	// @ts-ignore no type def for this component
+<script lang="ts">
+	import 'modern-normalize/modern-normalize.css';
+	// @ts-ignore
 	import { Boundary } from '@crownframework/svelte-error-boundary';
+	import { page } from '$app/stores';
+	import { browser } from '$app/env';
+	import WrapperCenter from '$lib/WrapperCenter.svelte';
 
-	export let Component;
-	export let componentProps;
-	export let Wrapper = null;
+	const defaultWrappers = {
+		center: WrapperCenter
+	};
+
+	export let modules = {};
+	export let wrappers: Record<string, any> = defaultWrappers;
+	$: wrappers = { ...defaultWrappers, ...wrappers };
+
+	let props = {};
+	let Wrapper = null;
+	let Component = null;
+	let defaultProps = {};
+	let wrapperId = '';
+
+	const getComponent = (currentComponentName) => {
+		const imported = modules[currentComponentName];
+		if (!currentComponentName || !imported) return;
+		Component = imported.default;
+		defaultProps = imported.defaultProps || {};
+		wrapperId = imported.taleWrapper || '';
+	};
+
+	const syncComponentList = (modules) => {
+		if (browser && window.parent) {
+			window.parent.postMessage({
+				type: 'componentList',
+				payload: Object.keys(modules)
+			});
+		}
+	};
+
+	const syncComponentData = (defaultProps, wrapperId) => {
+		if (browser && window.parent) {
+			window.parent.postMessage({
+				type: 'componentData',
+				payload: {
+					defaultProps,
+					wrapperId
+				}
+			});
+		}
+	};
+
+	const syncComponentProps = (e: MessageEvent) => {
+		const { type, payload } = e.data;
+		if (type === 'componentProps') {
+			props = payload;
+		}
+		if (type === 'componentPropsReset') {
+			props = {}
+		}
+	};
+
+	$: getComponent($page.url.searchParams.get('id'));
+	$: syncComponentList(modules);
+	$: syncComponentData(defaultProps, wrapperId);
+	$: Wrapper = wrappers[wrapperId] || null;
+	$: componentProps = Object.keys(props).length > 0 ? props : defaultProps;
 </script>
 
-<Boundary onError={console.error}>
-	{#if Wrapper}
-		<svelte:component this={Wrapper}>
-			<svelte:component this={Component} {...componentProps} />
-		</svelte:component>
+<svelte:window on:message={syncComponentProps} />
+
+<main>
+	{#if Component}
+		<Boundary onError={console.error}>
+			{#if Wrapper}
+				<svelte:component this={Wrapper}>
+					<svelte:component this={Component} {...componentProps} />
+				</svelte:component>
+			{:else}
+				<svelte:component this={Component} {...componentProps} />
+			{/if}
+		</Boundary>
 	{:else}
-		<svelte:component this={Component} {...componentProps} />
+		<WrapperCenter>Nothing to see here</WrapperCenter>
 	{/if}
-</Boundary>
+</main>
+
+<style>
+	main {
+		position: relative;
+		min-height: 100vh;
+		height: 1px;
+	}
+</style>

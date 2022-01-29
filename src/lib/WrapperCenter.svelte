@@ -4,6 +4,7 @@
 
 <style>
     .center {
+        position: relative;
         display: flex;
         height: 100%;
         align-items: center;
