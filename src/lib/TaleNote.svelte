@@ -4,7 +4,7 @@
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
 
-	let props = '';
+	let viewEl: HTMLIFrameElement = null
 </script>
 
 <main>
@@ -15,10 +15,10 @@
 		</section>
 		<section data-grid="b" class="overflow-y-scroll">
 			<h1 class="section-header">Props</h1>
-			<EditorProps bind:props />
+			<EditorProps {viewEl} />
 		</section>
 		<section data-grid="c" class="viewer-container">
-			<Viewer {props} />
+			<Viewer bind:viewEl />
 		</section>
 	</div>
 </main>

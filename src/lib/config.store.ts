@@ -36,7 +36,7 @@ export const state = writable({
 
 export const componentData = writable({
 	wrapperId: '',
-	defaultProps: {},
+	defaultProps: null,
 });
 
 if (typeof window !== 'undefined') {
@@ -52,10 +52,9 @@ if (typeof window !== 'undefined') {
 		}
 
 		if (type === 'componentData') {
-			componentData.update((prev) => {
+			componentData.update(() => {
 				const { wrapperId, defaultProps } = payload
 				return {
-					...prev,
 					wrapperId,
 					defaultProps,
 				}
@@ -67,5 +66,3 @@ if (typeof window !== 'undefined') {
 }
 
 export const config = createConfig();
-
-componentData.subscribe(v => console.log(v))

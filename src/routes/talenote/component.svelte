@@ -4,9 +4,9 @@
 
 <script>
 	import IframeApp from '$lib/IframeApp.svelte';
-    import CustomWrapper from './_CustomWrapper.svelte';
-    
-    const wrappers = {
+	import CustomWrapper from './_CustomWrapper.svelte';
+
+	const wrappers = {
 		custom: CustomWrapper
 	};
 </script>

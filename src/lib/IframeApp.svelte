@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import 'modern-normalize/modern-normalize.css';
 	// @ts-ignore
 	import { Boundary } from '@crownframework/svelte-error-boundary';
@@ -11,9 +11,10 @@
 	};
 
 	export let modules = {};
-	export let wrappers = defaultWrappers;
+	export let wrappers: Record<string, any> = defaultWrappers;
 	$: wrappers = { ...defaultWrappers, ...wrappers };
 
+	let props = {};
 	let Wrapper = null;
 	let Component = null;
 	let defaultProps = {};
@@ -48,30 +49,45 @@
 		}
 	};
 
+	const syncComponentProps = (e: MessageEvent) => {
+		const { type, payload } = e.data;
+		if (type === 'componentProps') {
+			props = payload;
+		}
+		if (type === 'componentPropsReset') {
+			props = {}
+		}
+	};
+
 	$: getComponent($page.url.searchParams.get('id'));
 	$: syncComponentList(modules);
 	$: syncComponentData(defaultProps, wrapperId);
 	$: Wrapper = wrappers[wrapperId] || null;
+	$: componentProps = Object.keys(props).length > 0 ? props : defaultProps;
 </script>
 
+<svelte:window on:message={syncComponentProps} />
+
 <main>
-{#if Component}
-	<Boundary onError={console.error}>
-		{#if Wrapper}
-			<svelte:component this={Wrapper}>
-				<svelte:component this={Component} {...defaultProps} />
-			</svelte:component>
-		{:else}
-			<svelte:component this={Component} {...defaultProps} />
-		{/if}
-	</Boundary>
-{:else}
-	<WrapperCenter>Nothing to see here</WrapperCenter>
-{/if}
+	{#if Component}
+		<Boundary onError={console.error}>
+			{#if Wrapper}
+				<svelte:component this={Wrapper}>
+					<svelte:component this={Component} {...componentProps} />
+				</svelte:component>
+			{:else}
+				<svelte:component this={Component} {...componentProps} />
+			{/if}
+		</Boundary>
+	{:else}
+		<WrapperCenter>Nothing to see here</WrapperCenter>
+	{/if}
 </main>
 
 <style>
 	main {
+		position: relative;
 		min-height: 100vh;
+		height: 1px;
 	}
 </style>

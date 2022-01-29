@@ -3,7 +3,7 @@
 	import { state } from '$lib/config.store';
 	import Menu from '$lib/ViewerMenu.svelte';
 
-	export let props = '';
+	export let viewEl: HTMLIFrameElement;
 
 	let viewerWidth = null;
 	let allowCustomWidth = false;
@@ -12,11 +12,11 @@
 	let params = new URLSearchParams({ id: null });
 
 	const getComponentUrl = ({ id }) => {
-		params.set('id', id)
-		return `/talenote/component?${params.toString()}`
-	}
+		params.set('id', id);
+		return `/talenote/component?${params.toString()}`;
+	};
 
-	$: componentUrl = getComponentUrl({ id: $state.currentComponentName })
+	$: componentUrl = getComponentUrl({ id: $state.currentComponentName });
 
 	const setViewerWidth = (w: number) => () => {
 		allowCustomWidth = false;
@@ -55,7 +55,7 @@
 			{fullscreen ? 'Exit fullscreen' : 'View fullscreen'}
 		</button>
 	{/if}
-	<iframe src={componentUrl} title="viewer" class="viewer-iframe" />
+	<iframe bind:this={viewEl} src={componentUrl} title="viewer" class="viewer-iframe" />
 </div>
 
 <style>
