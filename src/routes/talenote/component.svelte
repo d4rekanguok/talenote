@@ -3,7 +3,7 @@
 </script>
 
 <script>
-	import IframeApp from '$lib/IframeApp.svelte';
+	import { DisplayComponent } from '$lib';
 	import CustomWrapper from './_CustomWrapper.svelte';
 
 	const wrappers = {
@@ -11,4 +11,4 @@
 	};
 </script>
 
-<IframeApp {modules} {wrappers} />
+<DisplayComponent {modules} {wrappers} />

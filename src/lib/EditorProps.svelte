@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { componentData } from '$lib/config.store';
+	import { componentData } from '$lib/stores';
 
 	export let viewEl: HTMLIFrameElement;
 	let error: null | string = null;
@@ -7,7 +7,7 @@
 
 	$: defaultProps = JSON.stringify($componentData.defaultProps, null, 2);
 
-	const handlePropsUpdate = (e: SubmitEvent) => {
+	const handlePropsUpdate = () => {
 		const { value } = propContentEl;
 		try {
 			const props = JSON.parse(value);

@@ -4,21 +4,24 @@
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
 
-	let viewEl: HTMLIFrameElement = null
+	export let getComponentName = (v) => v;
+	export let viewerWidthPreset = [360, 480, 720, 900, 1200];
+
+	let viewEl: HTMLIFrameElement = null;
 </script>
 
 <main>
 	<div data-grid="container" class="container">
 		<section data-grid="a" class="overflow-y-scroll">
 			<h1 class="section-header">Components</h1>
-			<ListComponent />
+			<ListComponent {getComponentName} />
 		</section>
 		<section data-grid="b" class="overflow-y-scroll">
 			<h1 class="section-header">Props</h1>
 			<EditorProps {viewEl} />
 		</section>
 		<section data-grid="c" class="viewer-container">
-			<Viewer bind:viewEl />
+			<Viewer {viewerWidthPreset} bind:viewEl />
 		</section>
 	</div>
 </main>

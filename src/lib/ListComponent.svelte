@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { state, config } from '$lib/config.store';
+	import { state } from '$lib/stores';
+
+	export let getComponentName;
 
 	const setCurrentByName = (name: string) => () => {
 		$state.currentComponentName = name;
@@ -10,7 +12,7 @@
 	{#each $state.componentNames as name (name)}
 		<li class="component-item" class:active={name === $state.currentComponentName}>
 			<button class="component-name" on:click={setCurrentByName(name)}>
-				{$config.getComponentName(name) || ''}
+				{getComponentName(name) || ''}
 			</button>
 		</li>
 	{/each}

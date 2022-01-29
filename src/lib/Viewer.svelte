@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { state } from '$lib/config.store';
+	import { state } from '$lib/stores';
 	import Menu from '$lib/ViewerMenu.svelte';
 
 	export let viewEl: HTMLIFrameElement;
+	export let viewerWidthPreset: number[];
 
 	let viewerWidth = null;
 	let allowCustomWidth = false;
@@ -39,7 +40,8 @@
 			viewerWidth,
 			setViewerWidth,
 			allowCustomWidth,
-			setAllowCustomWidth
+			setAllowCustomWidth,
+			viewerWidthPreset,
 		}}
 	/>
 </div>

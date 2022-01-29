@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { config } from '$lib/config.store';
 	export let viewerWidth;
 	export let setViewerWidth;
 	export let allowCustomWidth;
 	export let setAllowCustomWidth;
+	export let viewerWidthPreset;
 </script>
 
 <menu class="menu">
@@ -12,7 +12,7 @@
 		class:highlight={!viewerWidth && !allowCustomWidth}
 		on:click={setViewerWidth(null)}>Full</button
 	>
-	{#each $config.viewerWidthPreset as w (w)}
+	{#each viewerWidthPreset as w (w)}
 		<button
 			on:click={setViewerWidth(w)}
 			class="btn-width"

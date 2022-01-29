@@ -1,3 +1,3 @@
+import DisplayComponent from '$lib/IframeApp.svelte'
 import TaleNote from '$lib/TaleNote.svelte';
-export { TaleNote };
-export { config } from '$lib/config.store';
+export { TaleNote, DisplayComponent };

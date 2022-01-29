@@ -1,33 +1,4 @@
 import { writable } from 'svelte/store';
-import WrapperCenter from '$lib/WrapperCenter.svelte';
-
-const defaultWrappers = {
-	center: WrapperCenter
-};
-
-const createConfig = () => {
-	const { subscribe, update, set } = writable({
-		viewerWidthPreset: [360, 480, 720, 800, 1200],
-		getComponentName: (v) => v,
-		wrappers: {}
-	});
-
-	const init = (nextConfig) =>
-		update((config) => {
-			const wrappers = {
-				...defaultWrappers,
-				...nextConfig.wrappers
-			};
-
-			return {
-				...config,
-				...nextConfig,
-				wrappers
-			};
-		});
-
-	return { subscribe, init, update, set };
-};
 
 export const state = writable({
 	componentNames: [],
@@ -64,5 +35,3 @@ if (typeof window !== 'undefined') {
 
 	window.onmessage = listen;
 }
-
-export const config = createConfig();
