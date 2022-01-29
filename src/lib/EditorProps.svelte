@@ -88,7 +88,7 @@
 </header>
 {#if displayProps}
 	<form bind:this={formEl} class="form" on:submit|preventDefault={handlePropsUpdate}>
-		<input placeholder={'Give this set of props a name'} bind:value={taleName} type="text" name="propTitle" />
+		<input class="props-name" placeholder={'Give this set of props a name'} bind:value={taleName} type="text" name="propTitle" />
 		<textarea spellcheck={false} name="propContent" class="props-editor"
 			>{displayProps}</textarea
 		>
@@ -99,7 +99,7 @@
 		{/if}
 		<div class="container-btn">
 			<button type="button" on:click={handleReset} class="btn-reset">Reset</button>
-			<button type="submit" class="btn-submit">Update</button>
+			<button type="submit" class="btn-submit">Preview</button>
 		</div>
 	</form>
 {:else}
@@ -120,12 +120,25 @@
 		padding-bottom: 1rem;
 	}
 
+	.props-name {
+		width: 100%;
+		font-size: 1.1rem;
+		margin-bottom: 0.5rem;
+		height: 2.25rem;
+		display: inline-flex;
+		align-items: center;
+		padding: 0 0.7rem;
+		background-color: var(--color-gray-100);
+		border: none;
+		border-radius: 8px;
+	}
+
 	.props-editor {
 		width: 100%;
 		font-family: monospace;
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
-		padding: 0.8rem 1rem;
+		padding: 0.5rem 0.7rem;
 		background-color: var(--color-gray-100);
 		border: none;
 		flex: 1;
