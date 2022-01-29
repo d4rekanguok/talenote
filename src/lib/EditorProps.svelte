@@ -16,6 +16,7 @@
 	const getTaleProps = (tales, taleId) => {
 		if (!tales) return null;
 		const tale = tales.find((_tale) => _tale._taleid === taleId);
+		if (!tale) return null;
 		const { _taleid, ...cleanedTale } = tale;
 
 		viewEl.contentWindow.postMessage(

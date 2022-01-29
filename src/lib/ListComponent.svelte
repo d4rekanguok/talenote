@@ -12,6 +12,13 @@
 	const setCurrentTale = (taleId: string) => () => {
 		$state.currentTaleId = taleId;
 	};
+
+	const handleDeleteTaleById = (taleId: string) => () => {
+		tales.del({
+			id: $state.currentComponentName,
+			taleId
+		})
+	}
 </script>
 
 <SectionHeader>Components</SectionHeader>
@@ -24,7 +31,10 @@
 			{#if $tales[name]}
 				<ul>
 					{#each $tales[name] as { _taleid } (_taleid)}
-						<button on:click={setCurrentTale(_taleid)}>{_taleid}</button>
+						<li>
+							<button on:click={setCurrentTale(_taleid)}>{_taleid}</button>
+							<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
+						</li>
 					{/each}
 				</ul>
 			{/if}

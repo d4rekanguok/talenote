@@ -63,7 +63,7 @@ export const del: RequestHandler = async (event) => {
 	await db.read();
 	const data = db.data;
 
-	const taleIndex = data[id]?.findIndex((_tale) => _tale.id === taleId);
+	const taleIndex = data[id]?.findIndex((_tale) => _tale._taleid === taleId);
 	let deletedTale;
 	if (taleIndex > -1) {
 		[deletedTale] = data[id].splice(taleIndex, 1);
