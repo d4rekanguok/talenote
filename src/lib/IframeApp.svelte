@@ -80,7 +80,7 @@
 			{/if}
 		</Boundary>
 	{:else}
-		<WrapperCenter>Nothing to see here</WrapperCenter>
+		<WrapperCenter>Loading components...</WrapperCenter>
 	{/if}
 </main>
 

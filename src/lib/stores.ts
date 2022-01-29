@@ -5,6 +5,20 @@ export const state = writable({
 	currentComponentName: '',
 });
 
+let unsubscribe = () => null;
+unsubscribe = state.subscribe((_state) => {
+	if (_state.currentComponentName === '' && _state.componentNames.length > 0) {
+		state.update(({ componentNames }) => {
+			return {
+				componentNames,
+				currentComponentName: componentNames[0]
+			}
+		})
+	} else {
+		unsubscribe()
+	}
+})
+
 export const componentData = writable({
 	wrapperId: '',
 	defaultProps: null,

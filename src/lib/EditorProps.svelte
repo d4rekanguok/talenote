@@ -36,12 +36,11 @@
 </script>
 
 {#if $componentData.defaultProps}
-	<form on:submit|preventDefault={handlePropsUpdate}>
+	<form class="form" on:submit|preventDefault={handlePropsUpdate}>
 		<textarea
 			bind:this={propContentEl}
 			spellcheck={false}
 			name="propContent"
-			rows={10}
 			class="props-editor">{defaultProps}</textarea
 		>
 		{#if error}
@@ -59,6 +58,13 @@
 {/if}
 
 <style>
+	.form {
+		display: inline-flex;
+		flex-direction: column;
+		flex: 1;
+		padding-bottom: 1rem;
+	}
+
 	.props-editor {
 		width: 100%;
 		font-family: monospace;
@@ -67,6 +73,7 @@
 		padding: 0.8rem 1rem;
 		background-color: var(--color-gray-100);
 		border: none;
+		flex: 1;
 		border-radius: 8px;
 	}
 

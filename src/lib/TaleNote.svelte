@@ -12,11 +12,11 @@
 
 <main>
 	<div data-grid="container" class="container">
-		<section data-grid="a" class="overflow-y-scroll">
+		<section data-grid="a" class="section-list">
 			<h1 class="section-header">Components</h1>
 			<ListComponent {getComponentName} />
 		</section>
-		<section data-grid="b" class="overflow-y-scroll">
+		<section data-grid="b" class="section-props">
 			<h1 class="section-header">Props</h1>
 			<EditorProps {viewEl} />
 		</section>
@@ -50,7 +50,7 @@
 	div[data-grid='container'] {
 		padding: 1rem 1rem 0;
 		display: grid;
-		grid-template-columns: 1fr 4fr;
+		grid-template-columns: minmax(20%, 360px) 1fr;
 		grid-template-rows: 1fr 1fr;
 		grid-gap: 1rem;
 		grid-template-areas:
@@ -78,7 +78,6 @@
 		margin-bottom: 1rem;
 		font-size: 1.5rem;
 		font-weight: bold;
-		padding: 0 0.5rem;
 		background-color: var(--color-bg);
 		top: 0;
 		position: sticky;
@@ -95,5 +94,15 @@
 		overflow: hidden;
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
+	}
+
+	.section-list {
+		overflow-y: scroll;
+		border-bottom: 1px solid var(--color-gray-300);
+	}
+
+	.section-props {
+		display: inline-flex;
+		flex-direction: column;
 	}
 </style>
