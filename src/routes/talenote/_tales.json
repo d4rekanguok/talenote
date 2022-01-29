@@ -10,5 +10,11 @@
       "description": "Hello,asdadad a description for you",
       "_taleid": "cw31Hx"
     }
+  ],
+  "/src/components/Button.svelte": [
+    {
+      "text": "Hi! This is what it looks like if the text is really long",
+      "_taleid": "Jlbrfx"
+    }
   ]
 }

@@ -17,8 +17,8 @@
 		tales.del({
 			id: $state.currentComponentName,
 			taleId
-		})
-	}
+		});
+	};
 </script>
 
 <SectionHeader>Components</SectionHeader>
@@ -29,11 +29,14 @@
 				{getComponentName(name) || ''}
 			</button>
 			{#if $tales[name]}
-				<ul>
+				<ul class="tale-list">
 					{#each $tales[name] as { _taleid } (_taleid)}
-						<li>
-							<button on:click={setCurrentTale(_taleid)}>{_taleid}</button>
-							<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
+						{@const active = _taleid === $state.currentTaleId}
+						<li class="tale">
+							<button class="tale-name" class:active on:click={setCurrentTale(_taleid)}>{_taleid}</button>
+							{#if active}
+								<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
+							{/if}
 						</li>
 					{/each}
 				</ul>
@@ -63,5 +66,40 @@
 		border: none;
 		background: none;
 		font-size: 1.1rem;
+		width: 100%;
+		padding: 0.5rem;
+		text-align: left;
+	}
+
+	.tale-list {
+		margin: 0.25rem 0;
+		padding: 0;
+	}
+
+	.tale {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.tale button {
+		border: none;
+		font-weight: normal;
+		background-color: transparent;
+		padding: 0.5rem;
+		color: var(--color-text-on-light);
+	}
+
+	.tale-name {
+		text-align: left;
+		flex: 1;
+	}
+
+	.tale-name:hover, .component-name:hover {
+		background-color: var(--color-gray-100);
+	}
+
+	.tale button.active {
+		color: var(--color-main-500);
 	}
 </style>

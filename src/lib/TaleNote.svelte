@@ -99,4 +99,8 @@
 		display: inline-flex;
 		flex-direction: column;
 	}
+
+	.section-props, .section-list {
+		padding: 0 0.25rem;
+	}
 </style>
