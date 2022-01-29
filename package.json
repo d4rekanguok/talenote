@@ -32,6 +32,8 @@
   "type": "module",
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
-    "modern-normalize": "^1.1.0"
+    "lowdb": "^3.0.0",
+    "modern-normalize": "^1.1.0",
+    "nanoid": "^3.2.0"
   }
 }
