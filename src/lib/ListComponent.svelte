@@ -5,12 +5,13 @@
 
 	export let getComponentName;
 
-	const setCurrentByName = (name: string) => () => {
+	const setCurrentComponentTale = (name: string, taleId: string) => () => {
 		$state.currentComponentName = name;
+		$state.currentTaleId = taleId;
 	};
 
-	const setCurrentTale = (taleId: string) => () => {
-		$state.currentTaleId = taleId;
+	const setCurrentByName = (name: string) => () => {
+		$state.currentComponentName = name;
 	};
 
 	const handleDeleteTaleById = (taleId: string) => () => {
@@ -25,22 +26,29 @@
 <ul class="component-list">
 	{#each $state.componentNames as name (name)}
 		<li class="component-item" class:active={name === $state.currentComponentName}>
-			<button class="component-name" on:click={setCurrentByName(name)}>
-				{getComponentName(name) || ''}
-			</button>
-			{#if $tales[name]}
+			<details>
+				<summary class="component-name">{getComponentName(name) || ''}</summary>
 				<ul class="tale-list">
-					{#each $tales[name] as { _taleid, _talename } (_taleid)}
-						{@const active = _taleid === $state.currentTaleId}
-						<li class="tale">
-							<button class="tale-name" class:active on:click={setCurrentTale(_taleid)}>{_talename || _taleid}</button>
-							{#if active}
-								<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
-							{/if}
-						</li>
-					{/each}
+					<li class="tale">
+						<button on:click={setCurrentByName(name)}>Default props</button>
+					</li>
+					{#if $tales[name]}
+						{#each $tales[name] as { _taleid, _talename } (_taleid)}
+							{@const active = _taleid === $state.currentTaleId}
+							<li class="tale">
+								<button
+									class="tale-name"
+									class:active
+									on:click={setCurrentComponentTale(name, _taleid)}>{_talename || _taleid}</button
+								>
+								{#if active}
+									<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
+								{/if}
+							</li>
+						{/each}
+					{/if}
 				</ul>
-			{/if}
+			</details>
 		</li>
 	{/each}
 </ul>
@@ -61,7 +69,7 @@
 		padding: 0.25rem 0;
 	}
 
-	button.component-name {
+	.component-name {
 		appearance: none;
 		border: none;
 		background: none;
@@ -73,7 +81,7 @@
 
 	.tale-list {
 		margin: 0.25rem 0;
-		padding: 0;
+		padding: 0 0 0 1rem;
 	}
 
 	.tale {
@@ -95,7 +103,8 @@
 		flex: 1;
 	}
 
-	.tale-name:hover, .component-name:hover {
+	.tale-name:hover,
+	.component-name:hover {
 		background-color: var(--color-gray-100);
 	}
 
