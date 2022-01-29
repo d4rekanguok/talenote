@@ -12,9 +12,15 @@ export const post: RequestHandler = async (event) => {
 	const { body } = event;
 	// @ts-expect-error dont know how to type this :(
 	const { id, tale } = body;
+	if (!id || !tale || Object.keys(tale).length === 0) {
+		return {
+			status: 404
+		};
+	}
+
 	await db.read();
 	const data = db.data;
-	tale.id = nanoid(6);
+	tale._taleid = nanoid(6);
 	data[id] ? data[id].push(tale) : (data[id] = [tale]);
 	await db.write();
 	return {
@@ -28,15 +34,26 @@ export const get: RequestHandler = async (event) => {
 	const id = url.searchParams.get('id');
 	await db.read();
 	const data = db.data;
-	const tales = data[id];
 
-	return {
-		status: 200,
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: tales
-	};
+	if (id === 'all') {
+		return {
+			status: 200,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: data
+		};
+	} else {
+		const tales = data[id];
+
+		return {
+			status: 200,
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: tales
+		};
+	}
 };
 
 export const del: RequestHandler = async (event) => {

@@ -3,6 +3,7 @@ import { writable } from 'svelte/store';
 export const state = writable({
 	componentNames: [],
 	currentComponentName: '',
+	currentTaleId: '',
 });
 
 let unsubscribe = () => null;
@@ -11,7 +12,8 @@ unsubscribe = state.subscribe((_state) => {
 		state.update(({ componentNames }) => {
 			return {
 				componentNames,
-				currentComponentName: componentNames[0]
+				currentComponentName: componentNames[0],
+				currentTaleId: '',
 			}
 		})
 	} else {

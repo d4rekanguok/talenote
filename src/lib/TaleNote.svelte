@@ -1,5 +1,7 @@
 <script lang="ts">
 	import 'modern-normalize/modern-normalize.css';
+	import { onMount } from 'svelte';
+	import { tales } from '$lib/tales';
 	import ListComponent from '$lib/ListComponent.svelte';
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
@@ -8,16 +10,18 @@
 	export let viewerWidthPreset = [360, 480, 720, 900, 1200];
 
 	let viewEl: HTMLIFrameElement = null;
+
+	onMount(() => {
+		tales.get()
+	})
 </script>
 
 <main>
 	<div data-grid="container" class="container">
 		<section data-grid="a" class="section-list">
-			<h1 class="section-header">Components</h1>
 			<ListComponent {getComponentName} />
 		</section>
 		<section data-grid="b" class="section-props">
-			<h1 class="section-header">Props</h1>
 			<EditorProps {viewEl} />
 		</section>
 		<section data-grid="c" class="viewer-container">
@@ -72,16 +76,6 @@
 
 	.container {
 		height: 100vh;
-	}
-
-	.section-header {
-		margin-bottom: 1rem;
-		font-size: 1.5rem;
-		font-weight: bold;
-		background-color: var(--color-bg);
-		top: 0;
-		position: sticky;
-		z-index: 1;
 	}
 
 	.viewer-container {

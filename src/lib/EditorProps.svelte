@@ -1,11 +1,33 @@
 <script lang="ts">
+	import { state } from '$lib/stores';
+	import { tales } from '$lib/tales';
+	import SectionHeader from '$lib/SectionHeader.svelte';
 	import { componentData } from '$lib/stores';
 
 	export let viewEl: HTMLIFrameElement;
 	let error: null | string = null;
 	let propContentEl: HTMLTextAreaElement;
 
+	$: componentId = $state.currentComponentName;
 	$: defaultProps = JSON.stringify($componentData.defaultProps, null, 2);
+	$: taleProps = getTaleProps($tales[componentId], $state.currentTaleId);
+	$: displayProps = taleProps || defaultProps;
+
+	const getTaleProps = (tales, taleId) => {
+		if (!tales) return null;
+		const tale = tales.find((_tale) => _tale._taleid === taleId);
+		const { _taleid, ...cleanedTale } = tale;
+
+		viewEl.contentWindow.postMessage(
+			{
+				type: 'componentProps',
+				payload: cleanedTale
+			},
+			'*'
+		);
+
+		return JSON.stringify(cleanedTale, null, 2);
+	};
 
 	const handlePropsUpdate = () => {
 		const { value } = propContentEl;
@@ -33,15 +55,31 @@
 		);
 		propContentEl.value = defaultProps;
 	};
+
+	const handleCreateTale = async () => {
+		const { value } = propContentEl;
+		try {
+			const props = JSON.parse(value);
+			await tales.create({
+				id: componentId,
+				tale: props
+			});
+
+			error = null;
+		} catch (err) {
+			error = err.message;
+		}
+	};
 </script>
 
-{#if $componentData.defaultProps}
+<header class="header">
+	<SectionHeader>Props</SectionHeader>
+	<button on:click={handleCreateTale}>+ new tale</button>
+</header>
+{#if displayProps}
 	<form class="form" on:submit|preventDefault={handlePropsUpdate}>
-		<textarea
-			bind:this={propContentEl}
-			spellcheck={false}
-			name="propContent"
-			class="props-editor">{defaultProps}</textarea
+		<textarea bind:this={propContentEl} spellcheck={false} name="propContent" class="props-editor"
+			>{displayProps}</textarea
 		>
 		{#if error}
 			<div class="container-error">
@@ -58,6 +96,12 @@
 {/if}
 
 <style>
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	.form {
 		display: inline-flex;
 		flex-direction: column;
