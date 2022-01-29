@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { componentStore } from '$lib/config.store';
+	import { componentData } from '$lib/config.store';
 	export let props: string;
 
 	let error: null | string = null;
@@ -16,10 +16,10 @@
 	};
 </script>
 
-{#if $componentStore.defaultProps}
+{#if $componentData.defaultProps}
 	<form on:submit|preventDefault={onPropsChange}>
 		<textarea spellcheck={false} name="propContent" rows={10} class="props-editor"
-			>{JSON.stringify($componentStore.defaultProps, null, 2)}</textarea
+			>{JSON.stringify($componentData.defaultProps, null, 2)}</textarea
 		>
 		{#if error}
 			<div class="container-error">

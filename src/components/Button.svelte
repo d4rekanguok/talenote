@@ -12,3 +12,10 @@
 </script>
 
 <button>{text}</button>
+
+<style>
+	button {
+		background-color: blue;
+		color: white;
+	}
+</style>

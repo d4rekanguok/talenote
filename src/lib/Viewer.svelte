@@ -1,17 +1,22 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { config, componentStore } from '$lib/config.store';
+	import { state } from '$lib/config.store';
 	import Menu from '$lib/ViewerMenu.svelte';
-	import IframeApp from '$lib/IframeApp.svelte';
 
 	export let props = '';
 
-	let viewerEl: HTMLIFrameElement;
-	let renderedComponent;
 	let viewerWidth = null;
 	let allowCustomWidth = false;
 	let isVisibleFS = false;
+
+	let params = new URLSearchParams({ id: null });
+
+	const getComponentUrl = ({ id }) => {
+		params.set('id', id)
+		return `/talenote/component?${params.toString()}`
+	}
+
+	$: componentUrl = getComponentUrl({ id: $state.currentComponentName })
 
 	const setViewerWidth = (w: number) => () => {
 		allowCustomWidth = false;
@@ -21,46 +26,6 @@
 	const setAllowCustomWidth = () => {
 		allowCustomWidth = !allowCustomWidth;
 	};
-
-	const renderComponent = (Component, wrapperId, defaultProps, props) => {
-		if (!Component || !viewerEl) return;
-
-		const componentProps = props.length > 0 ? JSON.parse(props) : defaultProps;
-
-		renderedComponent?.$destroy?.();
-		renderedComponent = new IframeApp({
-			target: viewerEl.contentWindow.document.body,
-			props: {
-				Component,
-				Wrapper: $config.wrappers[wrapperId] || null,
-				componentProps
-			}
-		});
-	};
-
-	onMount(() => {
-		const externalSheets = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).map(
-			(node) => node.cloneNode(true)
-		);
-		const styles = Array.from(document.head.querySelectorAll('style')).map((node) =>
-			node.cloneNode(true)
-		);
-		viewerEl.contentWindow.document.head.append(...[...styles, ...externalSheets]);
-
-		renderComponent(
-			$componentStore.Component,
-			$componentStore.wrapperId,
-			$componentStore.defaultProps,
-			props
-		);
-	});
-
-	$: renderComponent(
-		$componentStore.Component,
-		$componentStore.wrapperId,
-		$componentStore.defaultProps,
-		props
-	);
 
 	let fullscreen = false;
 	const setFullscreen = () => {
@@ -90,7 +55,7 @@
 			{fullscreen ? 'Exit fullscreen' : 'View fullscreen'}
 		</button>
 	{/if}
-	<iframe title="viewer" class="viewer-iframe" bind:this={viewerEl} />
+	<iframe src={componentUrl} title="viewer" class="viewer-iframe" />
 </div>
 
 <style>
