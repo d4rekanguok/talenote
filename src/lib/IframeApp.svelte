@@ -2,10 +2,10 @@
 	import 'modern-normalize/modern-normalize.css';
 	// @ts-ignore
 	import { Boundary } from '@crownframework/svelte-error-boundary';
-	import { page } from '$app/stores';
 	import { browser } from '$app/env';
+	import { page } from '$app/stores';
 	import WrapperCenter from '$lib/WrapperCenter.svelte';
-
+	
 	const defaultWrappers = {
 		center: WrapperCenter
 	};
@@ -59,7 +59,7 @@
 		}
 	};
 
-	$: getComponent($page.url.searchParams.get('id'));
+	$: getComponent($page?.url?.searchParams.get('id'));
 	$: syncComponentList(modules);
 	$: syncComponentData(defaultProps, wrapperId);
 	$: Wrapper = wrappers[wrapperId] || null;
