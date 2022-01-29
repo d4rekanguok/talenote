@@ -37,12 +37,12 @@
 <div class="viewer-menu">
 	<Menu
 		{...{
-			viewerWidth,
 			setViewerWidth,
 			allowCustomWidth,
 			setAllowCustomWidth,
 			viewerWidthPreset,
 		}}
+		bind:viewerWidth
 	/>
 </div>
 <div
