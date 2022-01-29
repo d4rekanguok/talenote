@@ -39,10 +39,13 @@
 	};
 
 	onMount(() => {
+		const externalSheets = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).map(
+			(node) => node.cloneNode(true)
+		);
 		const styles = Array.from(document.head.querySelectorAll('style')).map((node) =>
 			node.cloneNode(true)
 		);
-		viewerEl.contentWindow.document.head.append(...styles);
+		viewerEl.contentWindow.document.head.append(...[...styles, ...externalSheets]);
 
 		renderComponent(
 			$componentStore.Component,
@@ -136,8 +139,16 @@
 		top: 1rem;
 		border: none;
 		border-radius: 8px;
-		background-color: rgba(0, 0, 0, 0.6);
+		background-color: rgba(30, 58, 138, 0.7);
 		padding: 0.5rem 0.8rem;
 		color: var(--color-white);
+	}
+
+	.btn-fs:hover {
+		background-color: rgba(30, 58, 138, 1);
+	}
+
+	.btn-fs:focus {
+		box-shadow: var(--ring-main);
 	}
 </style>

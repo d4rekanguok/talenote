@@ -1,5 +1,5 @@
 <script lang="ts">
-	import 'modern-normalize';
+	import 'modern-normalize/modern-normalize.css';
 	import ListComponent from '$lib/ListComponent.svelte';
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
@@ -38,6 +38,8 @@
 		--color-text-on-light: #0f172a;
 		--color-text-on-dark: var(--color-white);
 		--color-bg: var(--color-white);
+		--color-bg-lighter: var(--color-gray-100);
+		--ring-main: 0 0 0 2px var(--color-main-700);
 
 		color: var(--color-text-on-light);
 	}

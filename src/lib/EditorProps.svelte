@@ -61,6 +61,10 @@
         color: var(--color-text-on-light);
     }
 
+	.btn-reset:hover {
+		background-color: var(--color-bg-lighter);
+	}
+
 	.btn-submit {
 		padding: 0.5rem 0.8rem;
 		color: var(--color-text-on-dark);
@@ -69,8 +73,12 @@
 		background-color: var(--color-main-500);
 	}
 
+	.btn-submit:hover {
+		background-color: var(--color-main-700);
+	}
+
     .btn-reset:focus, .btn-submit:focus {
-        box-shadow: 0 0 0 2px var(--color-main-700);
+        box-shadow: var(--ring-main);
     }
 
 	.container-error {
