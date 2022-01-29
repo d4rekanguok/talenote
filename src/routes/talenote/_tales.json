@@ -2,19 +2,16 @@
   "/src/components/Article.svelte": [
     {
       "title": "A long title",
-      "description": "Hello, a description fasdadsadsor you",
-      "_taleid": "zguJKo"
-    },
-    {
-      "title": "A long title",
-      "description": "Hello,asdadad a description for you",
-      "_taleid": "cw31Hx"
+      "description": "Hello, a description for you",
+      "_taleid": "PZsxAW",
+      "_talename": "Very long title"
     }
   ],
   "/src/components/Button.svelte": [
     {
-      "text": "Hi! This is what it looks like if the text is really long",
-      "_taleid": "Jlbrfx"
+      "text": "This is what it looks like when the content is really, really loooooooong",
+      "_taleid": "7k49mm",
+      "_talename": "A button with very long content"
     }
   ]
 }

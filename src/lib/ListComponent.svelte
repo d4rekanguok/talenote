@@ -30,10 +30,10 @@
 			</button>
 			{#if $tales[name]}
 				<ul class="tale-list">
-					{#each $tales[name] as { _taleid } (_taleid)}
+					{#each $tales[name] as { _taleid, _talename } (_taleid)}
 						{@const active = _taleid === $state.currentTaleId}
 						<li class="tale">
-							<button class="tale-name" class:active on:click={setCurrentTale(_taleid)}>{_taleid}</button>
+							<button class="tale-name" class:active on:click={setCurrentTale(_taleid)}>{_talename || _taleid}</button>
 							{#if active}
 								<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
 							{/if}

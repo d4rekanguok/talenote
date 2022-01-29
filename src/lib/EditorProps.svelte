@@ -6,7 +6,8 @@
 
 	export let viewEl: HTMLIFrameElement;
 	let error: null | string = null;
-	let propContentEl: HTMLTextAreaElement;
+	let formEl: HTMLFormElement;
+	let taleName = null
 
 	$: componentId = $state.currentComponentName;
 	$: defaultProps = JSON.stringify($componentData.defaultProps, null, 2);
@@ -14,11 +15,18 @@
 	$: displayProps = taleProps || defaultProps;
 
 	const getTaleProps = (tales, taleId) => {
-		if (!tales) return null;
+		if (!tales) {
+			taleName = null;
+			return null;
+		}
 		const tale = tales.find((_tale) => _tale._taleid === taleId);
-		if (!tale) return null;
-		const { _taleid, ...cleanedTale } = tale;
+		if (!tale) {
+			taleName = null;
+			return null;
+		}
+		const { _taleid, _talename, ...cleanedTale } = tale;
 
+		taleName = _talename;
 		viewEl.contentWindow.postMessage(
 			{
 				type: 'componentProps',
@@ -31,7 +39,7 @@
 	};
 
 	const handlePropsUpdate = () => {
-		const { value } = propContentEl;
+		const { value } = formEl['propContent'];
 		try {
 			const props = JSON.parse(value);
 			viewEl.contentWindow.postMessage(
@@ -54,16 +62,17 @@
 			},
 			'*'
 		);
-		propContentEl.value = defaultProps;
+		formEl['propContent'].value = defaultProps;
 	};
 
 	const handleCreateTale = async () => {
-		const { value } = propContentEl;
+		const { value } = formEl['propContent'];
 		try {
 			const props = JSON.parse(value);
 			await tales.create({
 				id: componentId,
-				tale: props
+				tale: props,
+				name: taleName,
 			});
 
 			error = null;
@@ -78,8 +87,9 @@
 	<button on:click={handleCreateTale}>+ new tale</button>
 </header>
 {#if displayProps}
-	<form class="form" on:submit|preventDefault={handlePropsUpdate}>
-		<textarea bind:this={propContentEl} spellcheck={false} name="propContent" class="props-editor"
+	<form bind:this={formEl} class="form" on:submit|preventDefault={handlePropsUpdate}>
+		<input placeholder={'Give this set of props a name'} bind:value={taleName} type="text" name="propTitle" />
+		<textarea spellcheck={false} name="propContent" class="props-editor"
 			>{displayProps}</textarea
 		>
 		{#if error}

@@ -11,7 +11,7 @@ const db = new Low(adapter);
 export const post: RequestHandler = async (event) => {
 	const { body } = event;
 	// @ts-expect-error dont know how to type this :(
-	const { id, tale } = body;
+	const { id, tale, name } = body;
 	if (!id || !tale || Object.keys(tale).length === 0) {
 		return {
 			status: 404
@@ -21,6 +21,9 @@ export const post: RequestHandler = async (event) => {
 	await db.read();
 	const data = db.data;
 	tale._taleid = nanoid(6);
+	if (name && name.length > 0) {
+		tale._talename = name
+	}
 	data[id] ? data[id].push(tale) : (data[id] = [tale]);
 	await db.write();
 	return {

@@ -9,10 +9,10 @@ const createTales = () => {
 		update(() => data);
 	};
 
-	const create = async ({ id, tale }) => {
+	const create = async ({ id, tale, name = '' }) => {
 		const res = await fetch('/talenote/tales', {
 			method: 'POST',
-			body: JSON.stringify({ id, tale }),
+			body: JSON.stringify({ id, tale, name }),
 			headers: {
 				'Content-Type': 'application/json'
 			}
