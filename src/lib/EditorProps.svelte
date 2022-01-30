@@ -141,9 +141,14 @@
 		display: inline-flex;
 		align-items: center;
 		padding: 0 0.7rem;
-		background-color: var(--tale-color-bg-lighter);
+		color: var(--tale-color-fg-a);
+		background-color: var(--tale-color-bg-b);
 		border: none;
 		border-radius: 8px;
+	}
+
+	.props-name::placeholder {
+		color: var(--tale-color-fg-c);
 	}
 
 	.props-editor {
@@ -152,7 +157,8 @@
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
 		padding: 0.5rem 0.7rem;
-		background-color: var(--tale-color-bg-lighter);
+		color: var(--tale-color-fg-a);
+		background-color: var(--tale-color-bg-b);
 		border: none;
 		flex: 1;
 		border-radius: 8px;
@@ -169,23 +175,23 @@
 		padding: 0.5rem 0.8rem;
 		border-radius: 4px;
 		background-color: transparent;
-		color: var(--tale-color-fg);
+		color: var(--tale-color-fg-a);
 	}
 
 	.btn-reset:hover {
-		background-color: var(--tale-color-bg-lighter);
+		background-color: var(--tale-color-bg-b);
 	}
 
 	.btn-submit {
 		padding: 0.5rem 0.8rem;
-		color: var(--tale-color-bg);
+		color: var(--tale-color-main-c);
 		border: none;
 		border-radius: 4px;
-		background-color: var(--tale-color-main-500);
+		background-color: var(--tale-color-main-a);
 	}
 
 	.btn-submit:hover {
-		background-color: var(--tale-color-main-700);
+		background-color: var(--tale-color-main-b);
 	}
 
 	.btn-reset:focus,
@@ -195,15 +201,15 @@
 
 	.container-error {
 		padding: 0.8rem 1rem;
-		color: var(--color-rose-600);
-		background-color: var(--tale-color-rose-200);
+		color: var(--tale-color-danger-b);
+		background-color: var(--tale-color-danger-a);
 		border-radius: 8px;
 		margin-bottom: 0.5rem;
 	}
 
 	.submit-hint {
 		font-size: 0.9rem;
-		color: var(--tale-color-fg-gray);
+		color: var(--tale-color-fg-c);
 		margin-right: 0.25rem;
 	}
 </style>

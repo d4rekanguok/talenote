@@ -26,11 +26,11 @@
     }
 
     .wrapper-logo:hover {
-        color: var(--tale-color-bg);
-        background-color: var(--tale-color-fg);
+        color: var(--tale-color-bg-a);
+        background-color: var(--tale-color-fg-a);
     }
 
     .wrapper-logo svg {
-        fill: var(--tale-color-bg);
+        fill: var(--tale-color-bg-a);
     }
 </style>

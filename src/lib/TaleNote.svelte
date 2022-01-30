@@ -13,8 +13,8 @@
 	let viewEl: HTMLIFrameElement = null;
 
 	onMount(() => {
-		tales.get()
-	})
+		tales.get();
+	});
 </script>
 
 <main>
@@ -40,21 +40,60 @@
 		--tale-color-gray-300: #cbd5e1;
 		--tale-color-gray-400: #94a3b8;
 		--tale-color-gray-500: #64748b;
+		--tale-color-gray-600: #475569;
+		--tale-color-gray-700: #334155;
+		--tale-color-gray-900: #0f172a;
+
 		--tale-color-rose-200: #fecdd3;
 		--tale-color-rose-700: #be123c;
+		
+		--tale-color-blue-300: #93c5fd;
 		--tale-color-blue-500: #3b82f6;
 		--tale-color-blue-700: #1d4ed8;
+		--tale-color-blue-900: #1e3a8a;
+		
 		--tale-color-white: white;
-		--tale-color-main-500: var(--tale-color-blue-500);
-		--tale-color-main-700: var(--tale-color-blue-700);
-		--tale-color-fg: #0f172a;
-		--tale-color-fg-gray: var(--tale-color-gray-400);
-		--tale-color-bg: var(--tale-color-gray-100);
-		--tale-color-bg-lighter: var(--tale-color-white);
-		--tale-ring-main: 0 0 0 2px var(--tale-color-main-700);
 
-		color: var(--tale-color-fg);
-		background-color: var(--tale-color-bg);
+		--tale-color-main-a: var(--tale-color-blue-500);
+		--tale-color-main-b: var(--tale-color-blue-700);
+		--tale-color-main-c: var(--tale-color-white);
+
+		--tale-color-danger-a: var(--tale-color-rose-200);
+		--tale-color-danger-b: var(--tale-color-rose-700);
+
+		--tale-color-fg-a: var(--tale-color-gray-900);
+		--tale-color-fg-b: var(--tale-color-gray-700);
+		--tale-color-fg-c: var(--tale-color-gray-400);
+
+		--tale-color-bg-a: var(--tale-color-gray-100);
+		--tale-color-bg-b: var(--tale-color-white);
+		--tale-color-bg-c: var(--tale-color-gray-300);
+
+		--tale-ring-main: 0 0 0 2px var(--tale-color-main-c);
+
+		color: var(--tale-color-fg-a);
+		background-color: var(--tale-color-bg-a);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		main {
+			--tale-color-main-a: var(--tale-color-blue-300);
+			--tale-color-main-b: var(--tale-color-blue-500);
+			--tale-color-main-c: var(--tale-color-blue-900);
+
+			--tale-color-fg-a: var(--tale-color-gray-100);
+			--tale-color-fg-b: var(--tale-color-gray-400);
+			--tale-color-fg-c: var(--tale-color-gray-400);
+
+			--tale-color-bg-a: var(--tale-color-gray-900);
+			--tale-color-bg-b: var(--tale-color-gray-700);
+			--tale-color-bg-c: var(--tale-color-gray-700);
+
+			--tale-ring-main: 0 0 0 2px var(--tale-color-main-a);
+
+			color: var(--tale-color-fg-a);
+			background-color: var(--tale-color-bg-a);
+		}
 	}
 
 	div[data-grid='container'] {
@@ -103,7 +142,7 @@
 
 	.section-list {
 		overflow-y: scroll;
-		border-bottom: 1px solid var(--tale-color-gray-300);
+		border-bottom: 1px solid var(--tale-color-bg-c);
 	}
 
 	.section-props {
@@ -111,7 +150,8 @@
 		flex-direction: column;
 	}
 
-	.section-props, .section-list {
+	.section-props,
+	.section-list {
 		padding: 0 0.25rem;
 	}
 </style>

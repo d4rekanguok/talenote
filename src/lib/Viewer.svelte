@@ -9,7 +9,7 @@
 	let viewerWidth = null;
 	let allowCustomWidth = false;
 	let isVisibleFS = false;
-	let backgroundColor = 'white';
+	let backgroundColor = '#FFF';
 
 	let params = new URLSearchParams({ id: null });
 

@@ -75,6 +75,7 @@
 		padding: 0.5rem;
 		text-align: left;
 		border-radius: 4px;
+		color: var(--tale-color-fg-b);
 	}
 
 	.tale-list {
@@ -90,8 +91,8 @@
 	}
 
 	.btn-delete {
-		color: var(--tale-color-rose-700);
-		background-color: var(--tale-color-rose-200);
+		color: var(--tale-color-danger-b);
+		background-color: var(--tale-color-danger-a);
 		padding: 0.5rem 0.75rem;
 	}
 
@@ -114,16 +115,17 @@
 		flex: 1;
 		padding: 0.5rem;
 		background-color: transparent;
-		color: var(--tale-color-fg);
+		color: var(--tale-color-fg-b);
 	}
-
+	
 	.tale-name:hover,
 	.component-name:hover {
-		background-color: var(--tale-color-bg-lighter);
+		color: var(--tale-color-fg-a);
+		background-color: var(--tale-color-bg-b);
 	}
 
 	.tale button.active {
 		font-weight: 600;
-		color: var(--tale-color-main-500);
+		color: var(--tale-color-main-a);
 	}
 </style>
