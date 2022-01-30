@@ -19,7 +19,13 @@
 			taleName = null;
 			return null;
 		}
-		const tale = tales.find((_tale) => _tale._taleid === taleId);
+
+		let tale;
+		if (taleId === 'default') {
+			tale = $componentData.defaultProps;
+		} else {
+			tale = tales.find((_tale) => _tale._taleid === taleId);
+		}
 		if (!tale) {
 			taleName = null;
 			return null;
@@ -83,17 +89,23 @@
 
 	const handleSubmitOnCmdEnter = (e) => {
 		if (!(e.code === 'Enter' && e.metaKey)) {
-			return
+			return;
 		}
-		handleCreateTale()
-	}
+		handleCreateTale();
+	};
 </script>
 
 <header class="header">
 	<SectionHeader>Props</SectionHeader>
 </header>
 {#if displayProps}
-	<form bind:this={formEl} on:keydown={handleSubmitOnCmdEnter} class="form" on:input|preventDefault={handlePropsUpdate} on:submit|preventDefault={handleCreateTale}>
+	<form
+		bind:this={formEl}
+		on:keydown={handleSubmitOnCmdEnter}
+		class="form"
+		on:input|preventDefault={handlePropsUpdate}
+		on:submit|preventDefault={handleCreateTale}
+	>
 		<input
 			class="props-name"
 			placeholder={'Give this set of props a name'}
