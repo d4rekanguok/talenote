@@ -20,6 +20,12 @@ TaleNote doesn't run a separate server — instead, it is embedded into SvelteKi
 
 ## Setting up
 
+Install `talenote`:
+
+```sh
+npm install talenote
+```
+
 In `routes`, create the following structure:
 
 ```
@@ -100,6 +106,8 @@ const { post, get, del } = createAPI({ pathToJson });
 
 export { post, get, del };
 ```
+
+> Note: I always run into strange ESM errors after launching `/talenote` for the first time. Hard refresh and / or reinstalling `node_modules` a few times usually fixes them... let me know if you have an idea how to improve this.
 
 ## Configurations
 
@@ -194,4 +202,5 @@ const config = {
 
 ## Contributions
 
-Ideas, PRs, contributions, forks are all welcomed.
+Ideas, PRs, contributions, forks are all welcomed!
+Built by [dereknguyen](https://twitter.com/DerekNguyen10)
