@@ -81,3 +81,17 @@ export const del: RequestHandler = async (event) => {
 		};
 	}
 };
+
+export const put: RequestHandler = async (event) => {
+	const { body } = event;
+	// @ts-expect-error dont know how to type this :(
+	const { id, taleId, name, tale: nextTale } = body;
+	await db.read();
+	const data = db.data;
+	const tales = data[id]
+	const tale = tales?.find(_tale => _tale._taleid === taleId)
+	if (tale) {
+		Object.assign(tale, nextTale, { name })
+	}
+
+}

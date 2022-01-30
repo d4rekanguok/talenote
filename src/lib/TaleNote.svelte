@@ -35,6 +35,8 @@
 		--color-gray-100: #f1f5f9;
 		--color-gray-300: #cbd5e1;
 		--color-gray-300: #cbd5e1;
+		--color-gray-400: #94a3b8;
+		--color-gray-500: #64748b;
 		--color-rose-200: #fecdd3;
 		--color-rose-700: #be123c;
 		--color-blue-500: #3b82f6;
@@ -43,6 +45,7 @@
 		--color-main-500: var(--color-blue-500);
 		--color-main-700: var(--color-blue-700);
 		--color-text-on-light: #0f172a;
+		--color-text-on-light-gray: var(--color-gray-400);
 		--color-text-on-dark: var(--color-white);
 		--color-bg: var(--color-white);
 		--color-bg-lighter: var(--color-gray-100);

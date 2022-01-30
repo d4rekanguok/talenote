@@ -2,8 +2,8 @@
 
 <style>
 	.section-header {
-		margin-bottom: 1rem;
-		font-size: 1.5rem;
+		margin: 0 0 1rem;
+		font-size: 1.25rem;
 		font-weight: bold;
 		background-color: var(--color-bg);
 		top: 0;

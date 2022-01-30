@@ -80,14 +80,20 @@
 			error = err.message;
 		}
 	};
+
+	const handleSubmitOnCmdEnter = (e) => {
+		if (!(e.code === 'Enter' && e.metaKey)) {
+			return
+		}
+		handleCreateTale()
+	}
 </script>
 
 <header class="header">
 	<SectionHeader>Props</SectionHeader>
-	<button on:click={handleCreateTale}>+ new tale</button>
 </header>
 {#if displayProps}
-	<form bind:this={formEl} class="form" on:submit|preventDefault={handlePropsUpdate}>
+	<form bind:this={formEl} on:keydown={handleSubmitOnCmdEnter} class="form" on:input|preventDefault={handlePropsUpdate} on:submit|preventDefault={handleCreateTale}>
 		<input
 			class="props-name"
 			placeholder={'Give this set of props a name'}
@@ -103,7 +109,10 @@
 		{/if}
 		<div class="container-btn">
 			<button type="button" on:click={handleReset} class="btn-reset">Reset</button>
-			<button type="submit" class="btn-submit">Preview</button>
+			<div>
+				<span class="submit-hint">cmd + enter</span>
+				<button type="submit" class="btn-submit">New Tale</button>
+			</div>
 		</div>
 	</form>
 {:else}
@@ -190,5 +199,11 @@
 		background-color: var(--color-rose-200);
 		border-radius: 8px;
 		margin-bottom: 0.5rem;
+	}
+
+	.submit-hint {
+		font-size: 0.9rem;
+		color: var(--color-text-on-light-gray);
+		margin-right: 0.25rem;
 	}
 </style>
