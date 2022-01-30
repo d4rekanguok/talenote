@@ -17,9 +17,8 @@ export const createAPI = ({ pathToJson }: CreateAPIArgs): CreateAPIReturns => {
 	const adapter = new JSONFile(pathToJson);
 	const db = new Low(adapter);
 
-	const post: RequestHandler = async (event) => {
-		const { body } = event;
-		// @ts-expect-error dont know how to type this :(
+	const post: RequestHandler = async ({ request }) => {
+		const body = await request.json()
 		const { id, tale, name } = body;
 		if (!id || !tale || Object.keys(tale).length === 0) {
 			return {
@@ -41,8 +40,7 @@ export const createAPI = ({ pathToJson }: CreateAPIArgs): CreateAPIReturns => {
 		};
 	};
 
-	const get: RequestHandler = async (event) => {
-		const { url } = event;
+	const get: RequestHandler = async ({ url }) => {
 		const id = url.searchParams.get('id');
 		await db.read();
 		const data = db.data;
@@ -68,8 +66,7 @@ export const createAPI = ({ pathToJson }: CreateAPIArgs): CreateAPIReturns => {
 		}
 	};
 
-	const del: RequestHandler = async (event) => {
-		const { url } = event;
+	const del: RequestHandler = async ({ url }) => {
 		const id = url.searchParams.get('id');
 		const taleId = url.searchParams.get('taleId');
 		await db.read();
