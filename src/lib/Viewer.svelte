@@ -86,7 +86,7 @@
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
 		background-color: white;
-		border: 1px solid var(--color-gray-300);
+		border: 1px solid var(--tale-color-gray-300);
 	}
 
 	.container-iframe.fullscreen {
@@ -110,7 +110,7 @@
 		border-radius: 8px;
 		background-color: rgba(30, 58, 138, 0.7);
 		padding: 0.5rem 0.8rem;
-		color: var(--color-white);
+		color: var(--tale-color-white);
 	}
 
 	.btn-fs:hover {
@@ -118,6 +118,6 @@
 	}
 
 	.btn-fs:focus {
-		box-shadow: var(--ring-main);
+		box-shadow: var(--tale-ring-main);
 	}
 </style>

@@ -20,17 +20,17 @@
         height: 100%;
         padding: 0 0.7rem;
         font-weight: 700;
-        color: var(--color-gray-500);
+        color: var(--tale-color-gray-500);
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
     }
 
     .wrapper-logo:hover {
-        color: var(--color-bg);
-        background-color: var(--color-text-on-light);
+        color: var(--tale-color-bg);
+        background-color: var(--tale-color-fg);
     }
 
     .wrapper-logo svg {
-        fill: var(--color-bg);
+        fill: var(--tale-color-bg);
     }
 </style>

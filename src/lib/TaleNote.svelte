@@ -36,27 +36,25 @@
 
 <style>
 	main {
-		--color-gray-100: #f1f5f9;
-		--color-gray-300: #cbd5e1;
-		--color-gray-300: #cbd5e1;
-		--color-gray-400: #94a3b8;
-		--color-gray-500: #64748b;
-		--color-rose-200: #fecdd3;
-		--color-rose-700: #be123c;
-		--color-blue-500: #3b82f6;
-		--color-blue-700: #1d4ed8;
-		--color-white: white;
-		--color-main-500: var(--color-blue-500);
-		--color-main-700: var(--color-blue-700);
-		--color-text-on-light: #0f172a;
-		--color-text-on-light-gray: var(--color-gray-400);
-		--color-text-on-dark: var(--color-white);
-		--color-bg: var(--color-gray-100);
-		--color-bg-lighter: var(--color-white);
-		--ring-main: 0 0 0 2px var(--color-main-700);
+		--tale-color-gray-100: #f1f5f9;
+		--tale-color-gray-300: #cbd5e1;
+		--tale-color-gray-400: #94a3b8;
+		--tale-color-gray-500: #64748b;
+		--tale-color-rose-200: #fecdd3;
+		--tale-color-rose-700: #be123c;
+		--tale-color-blue-500: #3b82f6;
+		--tale-color-blue-700: #1d4ed8;
+		--tale-color-white: white;
+		--tale-color-main-500: var(--tale-color-blue-500);
+		--tale-color-main-700: var(--tale-color-blue-700);
+		--tale-color-fg: #0f172a;
+		--tale-color-fg-gray: var(--tale-color-gray-400);
+		--tale-color-bg: var(--tale-color-gray-100);
+		--tale-color-bg-lighter: var(--tale-color-white);
+		--tale-ring-main: 0 0 0 2px var(--tale-color-main-700);
 
-		color: var(--color-text-on-light);
-		background-color: var(--color-bg);
+		color: var(--tale-color-fg);
+		background-color: var(--tale-color-bg);
 	}
 
 	div[data-grid='container'] {
@@ -105,7 +103,7 @@
 
 	.section-list {
 		overflow-y: scroll;
-		border-bottom: 1px solid var(--color-gray-300);
+		border-bottom: 1px solid var(--tale-color-gray-300);
 	}
 
 	.section-props {

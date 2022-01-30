@@ -141,7 +141,7 @@
 		display: inline-flex;
 		align-items: center;
 		padding: 0 0.7rem;
-		background-color: var(--color-bg-lighter);
+		background-color: var(--tale-color-bg-lighter);
 		border: none;
 		border-radius: 8px;
 	}
@@ -152,7 +152,7 @@
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
 		padding: 0.5rem 0.7rem;
-		background-color: var(--color-bg-lighter);
+		background-color: var(--tale-color-bg-lighter);
 		border: none;
 		flex: 1;
 		border-radius: 8px;
@@ -169,41 +169,41 @@
 		padding: 0.5rem 0.8rem;
 		border-radius: 4px;
 		background-color: transparent;
-		color: var(--color-text-on-light);
+		color: var(--tale-color-fg);
 	}
 
 	.btn-reset:hover {
-		background-color: var(--color-bg-lighter);
+		background-color: var(--tale-color-bg-lighter);
 	}
 
 	.btn-submit {
 		padding: 0.5rem 0.8rem;
-		color: var(--color-text-on-dark);
+		color: var(--tale-color-bg);
 		border: none;
 		border-radius: 4px;
-		background-color: var(--color-main-500);
+		background-color: var(--tale-color-main-500);
 	}
 
 	.btn-submit:hover {
-		background-color: var(--color-main-700);
+		background-color: var(--tale-color-main-700);
 	}
 
 	.btn-reset:focus,
 	.btn-submit:focus {
-		box-shadow: var(--ring-main);
+		box-shadow: var(--tale-ring-main);
 	}
 
 	.container-error {
 		padding: 0.8rem 1rem;
 		color: var(--color-rose-600);
-		background-color: var(--color-rose-200);
+		background-color: var(--tale-color-rose-200);
 		border-radius: 8px;
 		margin-bottom: 0.5rem;
 	}
 
 	.submit-hint {
 		font-size: 0.9rem;
-		color: var(--color-text-on-light-gray);
+		color: var(--tale-color-fg-gray);
 		margin-right: 0.25rem;
 	}
 </style>

@@ -26,7 +26,7 @@
 	{#if allowCustomWidth}
 		<input class="input-width" type="number" bind:value={viewerWidth} />
 	{/if}
-	<span class="divider" aria-hidden></span>
+	<span class="divider" aria-hidden />
 	<input class="input-width" type="text" bind:value={backgroundColor} />
 </menu>
 
@@ -40,7 +40,7 @@
 	.divider {
 		height: 2rem;
 		width: 1px;
-		background-color: var(--color-gray-300);
+		background-color: var(--tale-color-gray-300);
 		margin: 0 0.75rem;
 	}
 
@@ -51,28 +51,34 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		background-color: var(--color-bg);
+		background-color: var(--tale-color-bg);
 		height: 2.25rem;
 	}
-	
+
 	.input-width {
 		height: 2.25rem;
-		border: 1px solid var(--color-gray-300);
+		border: 1px solid var(--tale-color-gray-300);
+		background-color: var(--tale-color-bg);
 		border-radius: 4px;
 		padding: 0 0.5rem;
 		width: 6rem;
 	}
 
+	.input-width:focus,
+	.input-width:hover {
+		background-color: var(--tale-color-bg-lighter);
+	}
+
 	.btn-width:hover {
-		background-color: var(--color-bg-lighter);
+		background-color: var(--tale-color-bg-lighter);
 	}
 
 	.btn-width:focus {
-		box-shadow: var(--ring-main);
+		box-shadow: var(--tale-ring-main);
 	}
 
 	.btn-width.highlight {
-		background-color: var(--color-main-500);
-		color: var(--color-text-on-dark);
+		background-color: var(--tale-color-main-500);
+		color: var(--tale-color-bg);
 	}
 </style>

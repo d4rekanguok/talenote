@@ -90,8 +90,8 @@
 	}
 
 	.btn-delete {
-		color: var(--color-rose-700);
-		background-color: var(--color-rose-200);
+		color: var(--tale-color-rose-700);
+		background-color: var(--tale-color-rose-200);
 		padding: 0.5rem 0.75rem;
 	}
 
@@ -114,16 +114,16 @@
 		flex: 1;
 		padding: 0.5rem;
 		background-color: transparent;
-		color: var(--color-text-on-light);
+		color: var(--tale-color-fg);
 	}
 
 	.tale-name:hover,
 	.component-name:hover {
-		background-color: var(--color-bg-lighter);
+		background-color: var(--tale-color-bg-lighter);
 	}
 
 	.tale button.active {
 		font-weight: 600;
-		color: var(--color-main-500);
+		color: var(--tale-color-main-500);
 	}
 </style>
