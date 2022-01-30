@@ -18,14 +18,14 @@
 	let Wrapper = null;
 	let Component = null;
 	let defaultProps = {};
-	let wrapperId = '';
+	let wrapperId = 'center';
 
 	const getComponent = (currentComponentName) => {
 		const imported = modules[currentComponentName];
 		if (!currentComponentName || !imported) return;
 		Component = imported.default;
 		defaultProps = imported.defaultProps || {};
-		wrapperId = imported.taleWrapper || '';
+		wrapperId = imported.taleWrapper || 'center';
 	};
 
 	const syncComponentList = (modules) => {

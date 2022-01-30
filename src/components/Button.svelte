@@ -2,9 +2,6 @@
 	export const defaultProps = {
 		text: 'Hello'
 	};
-
-    export const taleWrapper = 'center'
-
 </script>
 
 <script type="ts">
