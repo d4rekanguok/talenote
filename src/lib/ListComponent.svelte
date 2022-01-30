@@ -5,10 +5,12 @@
 
 	export let getComponentName;
 
-	const setCurrentComponentTale = (name: string, taleId: string) => () => {
-		$state.currentComponentName = name;
-		$state.currentTaleId = taleId;
-	};
+	const setCurrentComponentTale =
+		(name: string, taleId: string = '') =>
+		() => {
+			$state.currentComponentName = name;
+			$state.currentTaleId = taleId;
+		};
 
 	const setCurrentByName = (name: string) => () => {
 		$state.currentComponentName = name;
@@ -30,7 +32,11 @@
 				<summary class="component-name">{getComponentName(name) || ''}</summary>
 				<ul class="tale-list">
 					<li class="tale">
-						<button on:click={setCurrentByName(name)}>Default props</button>
+						<button
+							class="tale-name"
+							class:active={$state.currentTaleId === '' && $state.currentComponentName === name}
+							on:click={setCurrentComponentTale(name)}>Default props</button
+						>
 					</li>
 					{#if $tales[name]}
 						{#each $tales[name] as { _taleid, _talename } (_taleid)}
