@@ -2,13 +2,13 @@
 
 # TaleNote
 
-Storybook-esque component directory, built right into SvelteKit
+Storybook-esque component directory, embed right into SvelteKit
 
-> Please give it a try, but setting up is a PITA right now, also only support SvelteKit from ^1.0.0-next.251
+> Please give it a try, but setting up is a PITA right now. It also only supports SvelteKit from ^1.0.0-next.250
 
-Setting up Storybooks with SvelteKit feels like a daunting task that's overkill for static / content-focused websites.
+Setting up Storybooks with SvelteKit is a daunting task that's overkill for static / content-focused websites.
 
-TaleNote doesn't run a seperate server — instead, it is embedded into SvelteKit's `routes` directory directly & rely on Vite's glob import to access other components.
+TaleNote doesn't run a separate server — instead, it is embedded into SvelteKit's `routes` directory directly & relies on Vite's glob import to access other components.
 
 ![demo](./demo.gif)
 
@@ -45,7 +45,7 @@ Just to reset the parent layout, if any.
 
 ### `_tales.json`
 
-This is where all the props snapshot will be stored. For starter, just leave this in:
+This is where all the props snapshots will be stored. For starter, just leave this in:
 
 ```
 {}
@@ -55,7 +55,7 @@ This is where all the props snapshot will be stored. For starter, just leave thi
 
 ### `component.svelte`
 
-Talenote will mount a Svelte component into this page & load it into an iframe. This is the place to pass in components, as well as any wrapper components.
+Talenote will mount a Svelte component into this page & load it into an iframe. This is the place to pass in components & any wrapper components.
 
 ```svelte
 <script context="module">
@@ -87,7 +87,7 @@ This is where Talenote UI lives.
 
 ### `tales.js` (or `.ts`)
 
-Talenote uses `lowdb` to write snapshot of your component props into a local json file. This file exports the HTTP operations required.
+Talenote uses `lowdb` to write snapshots of your component props into a local json file. This file exports the required HTTP operations.
 
 ```ts
 import path from 'path';
@@ -105,7 +105,7 @@ export { post, get, del };
 
 ### Set default props
 
-Because Talenote doesn't run any static code analysis, the only way for it to recognize a component's default props is to export them as a module.
+Because Talenote doesn't run any static code analysis, the only way to recognize a component's default props is to export them from that component.
 
 ```svelte
 <script context="module">
@@ -121,7 +121,7 @@ Because Talenote doesn't run any static code analysis, the only way for it to re
 
 ### Configure wrapper components
 
-When viewing small components like a button, it's helpful to have it centered on the screen. Talenote ships a wrapper that does that. From within a component, export a `taleWrapper` with the id of the wrapper. Valid defaults are `center` and `none`.
+When viewing small components such as a button, it's helpful to have them centered on the screen. From within a component, export a `taleWrapper` with the id of the wrapper. Valid defaults are `center` and `none`.
 
 ```svelte
 <script context="module">
