@@ -33,6 +33,8 @@
 	const setFullscreen = () => {
 		fullscreen = !fullscreen;
 	};
+
+	$: actualWidth = fullscreen ? '100%' : viewerWidth ? viewerWidth + 'px' : `100%`;
 </script>
 
 <div class="viewer-menu">
@@ -41,7 +43,7 @@
 			setViewerWidth,
 			allowCustomWidth,
 			setAllowCustomWidth,
-			viewerWidthPreset,
+			viewerWidthPreset
 		}}
 		bind:viewerWidth
 		bind:backgroundColor
@@ -52,14 +54,20 @@
 	class:fullscreen
 	on:mouseenter={() => (isVisibleFS = true)}
 	on:mouseleave={() => (isVisibleFS = false)}
-	style:width={viewerWidth ? viewerWidth + 'px' : `100%`}
+	style:width={actualWidth}
 >
 	{#if isVisibleFS}
 		<button transition:fade class="btn-fs" on:click={setFullscreen}>
 			{fullscreen ? 'Exit fullscreen' : 'View fullscreen'}
 		</button>
 	{/if}
-	<iframe style:background-color={backgroundColor} bind:this={viewEl} src={componentUrl} title="viewer" class="viewer-iframe" />
+	<iframe
+		style:background-color={backgroundColor}
+		bind:this={viewEl}
+		src={componentUrl}
+		title="viewer"
+		class="viewer-iframe"
+	/>
 </div>
 
 <style>
