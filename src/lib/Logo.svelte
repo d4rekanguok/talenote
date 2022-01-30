@@ -20,7 +20,7 @@
         height: 100%;
         padding: 0 0.7rem;
         font-weight: 700;
-        color: var(--tale-color-gray-500);
+        color: var(--tale-color-fg-b);
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
     }
