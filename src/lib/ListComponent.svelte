@@ -74,6 +74,7 @@
 		width: 100%;
 		padding: 0.5rem;
 		text-align: left;
+		border-radius: 4px;
 	}
 
 	.tale-list {
@@ -92,7 +93,6 @@
 		color: var(--color-rose-700);
 		background-color: var(--color-rose-200);
 		padding: 0.5rem 0.75rem;
-		border-radius: 4px;
 	}
 
 	.tale .btn-delete {
@@ -106,6 +106,7 @@
 	.tale-name, .btn-delete {
 		border: none;
 		font-weight: normal;
+		border-radius: 4px;
 	}
 
 	.tale-name {
@@ -118,7 +119,7 @@
 
 	.tale-name:hover,
 	.component-name:hover {
-		background-color: var(--color-gray-100);
+		background-color: var(--color-bg-lighter);
 	}
 
 	.tale button.active {

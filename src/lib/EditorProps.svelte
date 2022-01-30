@@ -141,7 +141,7 @@
 		display: inline-flex;
 		align-items: center;
 		padding: 0 0.7rem;
-		background-color: var(--color-gray-100);
+		background-color: var(--color-bg-lighter);
 		border: none;
 		border-radius: 8px;
 	}
@@ -152,7 +152,7 @@
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
 		padding: 0.5rem 0.7rem;
-		background-color: var(--color-gray-100);
+		background-color: var(--color-bg-lighter);
 		border: none;
 		flex: 1;
 		border-radius: 8px;

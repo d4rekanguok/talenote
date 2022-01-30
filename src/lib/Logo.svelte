@@ -26,11 +26,8 @@
     }
 
     .wrapper-logo:hover {
-        background-color: var(--color-gray-100);
-    }
-
-    .wrapper-logo:hover svg {
-        fill: var(--color-gray-500);
+        color: var(--color-bg);
+        background-color: var(--color-text-on-light);
     }
 
     .wrapper-logo svg {

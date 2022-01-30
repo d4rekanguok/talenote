@@ -51,11 +51,12 @@
 		--color-text-on-light: #0f172a;
 		--color-text-on-light-gray: var(--color-gray-400);
 		--color-text-on-dark: var(--color-white);
-		--color-bg: var(--color-white);
-		--color-bg-lighter: var(--color-gray-100);
+		--color-bg: var(--color-gray-100);
+		--color-bg-lighter: var(--color-white);
 		--ring-main: 0 0 0 2px var(--color-main-700);
 
 		color: var(--color-text-on-light);
+		background-color: var(--color-bg);
 	}
 
 	div[data-grid='container'] {
