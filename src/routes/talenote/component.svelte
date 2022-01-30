@@ -7,7 +7,8 @@
 	import CustomWrapper from './_CustomWrapper.svelte';
 
 	const wrappers = {
-		custom: CustomWrapper
+		custom: CustomWrapper,
+		default: 'center',
 	};
 </script>
 

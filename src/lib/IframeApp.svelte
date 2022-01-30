@@ -7,25 +7,27 @@
 	import WrapperCenter from '$lib/WrapperCenter.svelte';
 
 	const defaultWrappers = {
+		none: null,
 		center: WrapperCenter
 	};
 
 	export let modules = {};
 	export let wrappers: Record<string, any> = defaultWrappers;
 	$: wrappers = { ...defaultWrappers, ...wrappers };
+	$: defaultWrapperId = wrappers.default;
 
 	let props = {};
 	let Wrapper = null;
 	let Component = null;
 	let defaultProps = {};
-	let wrapperId = 'center';
+	let wrapperId = defaultWrapperId;
 
 	const getComponent = (currentComponentName) => {
 		const imported = modules[currentComponentName];
 		if (!currentComponentName || !imported) return;
 		Component = imported.default;
 		defaultProps = imported.defaultProps || {};
-		wrapperId = imported.taleWrapper || 'center';
+		wrapperId = imported.taleWrapper || defaultWrapperId;
 	};
 
 	const syncComponentList = (modules) => {
