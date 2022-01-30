@@ -34,7 +34,7 @@
 		fullscreen = !fullscreen;
 	};
 
-	$: actualWidth = fullscreen ? '100%' : viewerWidth ? viewerWidth + 'px' : `100%`;
+	$: actualWidth = fullscreen ? '100vw' : viewerWidth ? viewerWidth + 'px' : `100%`;
 </script>
 
 <div class="viewer-menu">
