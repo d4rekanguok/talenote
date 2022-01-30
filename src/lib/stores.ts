@@ -6,12 +6,18 @@ export const state = writable({
 	currentTaleId: '',
 });
 
+export const componentData = writable({
+	wrapperId: '',
+	defaultProps: null,
+});
+
 let unsubscribe = () => null;
 unsubscribe = state.subscribe((_state) => {
 	if (_state.currentComponentName === '' && _state.componentNames.length > 0) {
 		state.update(({ componentNames }) => {
 			return {
 				componentNames,
+				prevComponentName: '',
 				currentComponentName: componentNames[0],
 				currentTaleId: '',
 			}
@@ -20,11 +26,6 @@ unsubscribe = state.subscribe((_state) => {
 		unsubscribe()
 	}
 })
-
-export const componentData = writable({
-	wrapperId: '',
-	defaultProps: null,
-});
 
 if (typeof window !== 'undefined') {
 	const listen = (e: MessageEvent) => {

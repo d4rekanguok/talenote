@@ -5,7 +5,7 @@
 	import { browser } from '$app/env';
 	import { page } from '$app/stores';
 	import WrapperCenter from '$lib/WrapperCenter.svelte';
-	
+
 	const defaultWrappers = {
 		center: WrapperCenter
 	};
@@ -55,7 +55,7 @@
 			props = payload;
 		}
 		if (type === 'componentPropsReset') {
-			props = {}
+			props = {};
 		}
 	};
 

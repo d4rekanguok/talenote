@@ -1,5 +1,5 @@
 import path from 'path';
-import { createAPI } from '$lib/route-tales';
+import { createAPI } from '$lib';
 
 const taleDir = path.join(import.meta.url, '..').replace('file:', '');
 const pathToJson = path.join(taleDir, '_tales.json');

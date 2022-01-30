@@ -6,10 +6,10 @@
 	export let getComponentName;
 
 	const setCurrentComponentTale =
-		(name: string, taleId: string = 'default') =>
+		(name: string, taleId: string = '') =>
 		() => {
-			$state.currentComponentName = name;
 			$state.currentTaleId = taleId;
+			$state.currentComponentName = name;
 		};
 
 	const handleDeleteTaleById = (taleId: string) => () => {
@@ -30,7 +30,7 @@
 					<li class="tale">
 						<button
 							class="tale-name"
-							class:active={$state.currentTaleId === 'default' &&
+							class:active={$state.currentTaleId === '' &&
 								$state.currentComponentName === name}
 							on:click={setCurrentComponentTale(name)}>Default props</button
 						>
@@ -45,7 +45,11 @@
 									aria-label={`Open "${_talename}"`}
 									on:click={setCurrentComponentTale(name, _taleid)}>{_talename || _taleid}</button
 								>
-								<button class="btn-delete" aria-label={`Delete "${_talename}"`} on:click={handleDeleteTaleById(_taleid)}>&times;</button>
+								<button
+									class="btn-delete"
+									aria-label={`Delete "${_talename}"`}
+									on:click={handleDeleteTaleById(_taleid)}>&times;</button
+								>
 							</li>
 						{/each}
 					{/if}
@@ -104,7 +108,8 @@
 		opacity: 1;
 	}
 
-	.tale-name, .btn-delete {
+	.tale-name,
+	.btn-delete {
 		border: none;
 		font-weight: normal;
 		border-radius: 4px;
@@ -117,7 +122,7 @@
 		background-color: transparent;
 		color: var(--tale-color-fg-b);
 	}
-	
+
 	.tale-name:hover,
 	.component-name:hover {
 		color: var(--tale-color-fg-a);

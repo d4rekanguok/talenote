@@ -15,17 +15,17 @@
 	$: displayProps = taleProps || defaultProps;
 
 	const getTaleProps = (tales, taleId) => {
-		if (!tales) {
+		if (!tales || taleId === '') {
 			taleName = null;
+			viewEl?.contentWindow?.postMessage(
+				{
+					type: 'componentPropsReset',
+				},
+				'*'
+			);
 			return null;
 		}
-
-		let tale;
-		if (taleId === 'default') {
-			tale = $componentData.defaultProps;
-		} else {
-			tale = tales.find((_tale) => _tale._taleid === taleId);
-		}
+		const tale = tales.find((_tale) => _tale._taleid === taleId);
 		if (!tale) {
 			taleName = null;
 			return null;
