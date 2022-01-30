@@ -6,7 +6,7 @@
 	export let getComponentName;
 
 	const setCurrentComponentTale =
-		(name: string, taleId: string = '') =>
+		(name: string, taleId: string = 'default') =>
 		() => {
 			$state.currentComponentName = name;
 			$state.currentTaleId = taleId;
@@ -34,7 +34,7 @@
 					<li class="tale">
 						<button
 							class="tale-name"
-							class:active={$state.currentTaleId === '' && $state.currentComponentName === name}
+							class:active={$state.currentTaleId === 'default' && $state.currentComponentName === name}
 							on:click={setCurrentComponentTale(name)}>Default props</button
 						>
 					</li>
@@ -115,6 +115,7 @@
 	}
 
 	.tale button.active {
+		font-weight: 600;
 		color: var(--color-main-500);
 	}
 </style>

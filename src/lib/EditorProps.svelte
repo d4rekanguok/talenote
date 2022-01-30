@@ -7,7 +7,7 @@
 	export let viewEl: HTMLIFrameElement;
 	let error: null | string = null;
 	let formEl: HTMLFormElement;
-	let taleName = null
+	let taleName = null;
 
 	$: componentId = $state.currentComponentName;
 	$: defaultProps = JSON.stringify($componentData.defaultProps, null, 2);
@@ -72,7 +72,7 @@
 			await tales.create({
 				id: componentId,
 				tale: props,
-				name: taleName,
+				name: taleName
 			});
 
 			error = null;
@@ -88,10 +88,14 @@
 </header>
 {#if displayProps}
 	<form bind:this={formEl} class="form" on:submit|preventDefault={handlePropsUpdate}>
-		<input class="props-name" placeholder={'Give this set of props a name'} bind:value={taleName} type="text" name="propTitle" />
-		<textarea spellcheck={false} name="propContent" class="props-editor"
-			>{displayProps}</textarea
-		>
+		<input
+			class="props-name"
+			placeholder={'Give this set of props a name'}
+			bind:value={taleName}
+			type="text"
+			name="propTitle"
+		/>
+		<textarea spellcheck={false} name="propContent" class="props-editor">{displayProps}</textarea>
 		{#if error}
 			<div class="container-error">
 				{error}
