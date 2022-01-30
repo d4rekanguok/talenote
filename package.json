@@ -30,6 +30,9 @@
     "typescript": "^4.5.5"
   },
   "type": "module",
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.0.0-next.250"
+  },
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
     "lowdb": "^3.0.0",

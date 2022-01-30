@@ -1,10 +1,10 @@
 {
   "/src/components/Article.svelte": [
     {
-      "title": "A Really Long Title",
+      "title": "A very long title",
       "description": "Hello, a description for you",
-      "_taleid": "u4vrEw",
-      "_talename": "Very long title"
+      "_taleid": "N-jjpj",
+      "_talename": "A new tale"
     }
   ],
   "/src/components/Button.svelte": [

@@ -24,6 +24,9 @@ const config = {
 			exports: (filepath) => {
 				return filepath.includes('index.ts');
 			}
+		},
+		routes: (filepath) => {
+			return process.env.NODE_ENV === 'production' ? !filepath.includes('talenote') : true;
 		}
 	}
 };

@@ -1,38 +1,197 @@
-# create-svelte
+![TaleNote](./logo.svg)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+# TaleNote
 
-## Creating a project
+Storybook-esque component directory, built right into SvelteKit
 
-If you're seeing this, you've probably already done this step. Congrats!
+> Please give it a try, but setting up is a PITA right now, also only support SvelteKit from ^1.0.0-next.251
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+Setting up Storybooks with SvelteKit feels like a daunting task that's overkill for static / content-focused websites.
 
-# create a new project in my-app
-npm init svelte@next my-app
+TaleNote doesn't run a seperate server — instead, it is embedded into SvelteKit's `routes` directory directly & rely on Vite's glob import to access other components.
+
+![demo](./demo.gif)
+
+## Features
+
+- List all components from a directory or more
+- View a component at different, customizable breakpoints
+- Saving snapshots of props as 'tales'
+
+## Setting up
+
+In `routes`, create the following structure:
+
+```
+routes
+  └─ talenote
+        ├─ __layout.reset.svelte
+        ├─ _tales.json
+        ├─ component.svelte
+        ├─ index.svelte
+        └─ tales.js
+
 ```
 
-> Note: the `@next` is temporary
+> Directory & filenames are currently hardcoded. [There's an example of what these files look like here](https://github.com/d4rekanguok/talenote/tree/main/src/routes/talenote)
 
-## Developing
+### `__layout.reset.svelte`
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Just to reset the parent layout, if any.
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```
+<slot />
 ```
 
-## Building
+### `_tales.json`
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+This is where all the props snapshot will be stored. For starter, just leave this in:
 
-```bash
-npm run build
+```
+{}
 ```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+> I'm 90% confident that `lowdb` would just create one if there's none, please let me know if it doesn't.
+
+### `component.svelte`
+
+Talenote will mount a Svelte component into this page & load it into an iframe. This is the place to pass in components, as well as any wrapper components.
+
+```svelte
+<script context="module">
+	// Write a glob to get your handsome components here. Are they in `lib`? or maybe `components`?
+	const modules = import.meta.globEager('/src/lib/**/*.svelte');
+</script>
+
+<script>
+	import { DisplayComponent } from 'talenote';
+</script>
+
+<DisplayComponent {modules} />
+```
+
+### `index.svelte`
+
+This is where Talenote UI lives.
+
+```svelte
+<script lang="ts">
+	import { TaleNote } from 'talenote';
+
+	// not required, just something to get the component name instead of the full file path
+	const getComponentName = (name: string) => name.split('/src/lib/')[1].split('.svelte')[0];
+</script>
+
+<TaleNote {getComponentName} />
+```
+
+### `tales.js` (or `.ts`)
+
+Talenote uses `lowdb` to write snapshot of your component props into a local json file. This file exports the HTTP operations required.
+
+```ts
+import path from 'path';
+import { createAPI } from 'talenote';
+
+// __dirname is not a thing with ESM, emulates it with import.meta.url
+const taleDir = path.join(import.meta.url, '..').replace('file:', '');
+const pathToJson = path.join(taleDir, '_tales.json');
+const { post, get, del } = createAPI({ pathToJson });
+
+export { post, get, del };
+```
+
+## Configurations
+
+### Set default props
+
+Because Talenote doesn't run any static code analysis, the only way for it to recognize a component's default props is to export them as a module.
+
+```svelte
+<script context="module">
+	export const defaultProps = { name: 'Eri' };
+</script>
+
+<script>
+	export let name = defaultProps.name;
+</script>
+
+<h1>Hello {name}</h1>
+```
+
+### Configure wrapper components
+
+When viewing small components like a button, it's helpful to have it centered on the screen. Talenote ships a wrapper that does that. From within a component, export a `taleWrapper` with the id of the wrapper. Valid defaults are `center` and `none`.
+
+```svelte
+<script context="module">
+	export const defaultProps = { name: 'Eri' };
+
+	// center this component
+	export const taleWrapper = 'center';
+
+	// alternatively, dont use any wrapper
+	export const taleWrapper = 'none';
+</script>
+
+<script>
+	export let name = defaultProps.name;
+</script>
+
+<h1>Hello {name}</h1>
+```
+
+Additional wrappers can be passed into `talenote/component.svelte`:
+
+```svelte
+<script context="module">
+	const modules = import.meta.globEager('/src/components/**/*.svelte');
+</script>
+
+<script>
+	import { DisplayComponent } from 'talenote';
+	import CustomWrapper from './_CustomWrapper.svelte';
+
+	const wrappers = {
+		custom: CustomWrapper,
+
+		// set the component above as the default for all components
+		default: 'custom'
+	};
+</script>
+
+// talenote/component.svelte
+<DisplayComponent {modules} {wrappers} />
+```
+
+### Exclude Talenote from production builds
+
+Starting from 1.0.0-next.249, `kit.routes` is available in `svelte.config.js` to filter out unwanted paths.
+
+```js
+// svelte.config.js
+const config = {
+	// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
+	preprocess: preprocess(),
+
+	kit: {
+		adapter: adapter(),
+		target: '#svelte',
+		routes: (filepath) => {
+			return process.env.NODE_ENV === 'production' ? !filepath.includes('talenote') : true;
+		}
+	}
+};
+```
+
+## Caveats
+
+- Because component props are serialized & passed back & forth via `window.postMessage`, functions props are excluded.
+
+- Tales (component props snapshot) can only be viewed locally, though the component directory can still be shipped.
+
+
+## Contributions
+
+Ideas, PRs, contributions, forks are all welcomed.
