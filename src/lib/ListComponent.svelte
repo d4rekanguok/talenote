@@ -12,10 +12,6 @@
 			$state.currentTaleId = taleId;
 		};
 
-	const setCurrentByName = (name: string) => () => {
-		$state.currentComponentName = name;
-	};
-
 	const handleDeleteTaleById = (taleId: string) => () => {
 		tales.del({
 			id: $state.currentComponentName,
@@ -34,7 +30,8 @@
 					<li class="tale">
 						<button
 							class="tale-name"
-							class:active={$state.currentTaleId === 'default' && $state.currentComponentName === name}
+							class:active={$state.currentTaleId === 'default' &&
+								$state.currentComponentName === name}
 							on:click={setCurrentComponentTale(name)}>Default props</button
 						>
 					</li>
@@ -45,11 +42,10 @@
 								<button
 									class="tale-name"
 									class:active
+									aria-label={`Open "${_talename}"`}
 									on:click={setCurrentComponentTale(name, _taleid)}>{_talename || _taleid}</button
 								>
-								{#if active}
-									<button on:click={handleDeleteTaleById(_taleid)}>&times;</button>
-								{/if}
+								<button class="btn-delete" aria-label={`Delete "${_talename}"`} on:click={handleDeleteTaleById(_taleid)}>&times;</button>
 							</li>
 						{/each}
 					{/if}
@@ -60,11 +56,6 @@
 </ul>
 
 <style>
-	.active button {
-		color: var(--color-main-500);
-		font-weight: bold;
-	}
-
 	.component-list {
 		padding: 0;
 		margin: 0;
@@ -93,20 +84,36 @@
 	.tale {
 		display: flex;
 		align-items: center;
+		gap: 0.25rem;
 		justify-content: space-between;
 	}
 
-	.tale button {
+	.btn-delete {
+		color: var(--color-rose-700);
+		background-color: var(--color-rose-200);
+		padding: 0.5rem 0.75rem;
+		border-radius: 4px;
+	}
+
+	.tale .btn-delete {
+		opacity: 0;
+	}
+
+	.tale:hover .btn-delete {
+		opacity: 1;
+	}
+
+	.tale-name, .btn-delete {
 		border: none;
 		font-weight: normal;
-		background-color: transparent;
-		padding: 0.5rem;
-		color: var(--color-text-on-light);
 	}
 
 	.tale-name {
 		text-align: left;
 		flex: 1;
+		padding: 0.5rem;
+		background-color: transparent;
+		color: var(--color-text-on-light);
 	}
 
 	.tale-name:hover,
