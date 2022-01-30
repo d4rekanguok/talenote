@@ -9,6 +9,7 @@
 	let viewerWidth = null;
 	let allowCustomWidth = false;
 	let isVisibleFS = false;
+	let backgroundColor = 'white';
 
 	let params = new URLSearchParams({ id: null });
 
@@ -43,6 +44,7 @@
 			viewerWidthPreset,
 		}}
 		bind:viewerWidth
+		bind:backgroundColor
 	/>
 </div>
 <div
@@ -57,7 +59,7 @@
 			{fullscreen ? 'Exit fullscreen' : 'View fullscreen'}
 		</button>
 	{/if}
-	<iframe bind:this={viewEl} src={componentUrl} title="viewer" class="viewer-iframe" />
+	<iframe style:background-color={backgroundColor} bind:this={viewEl} src={componentUrl} title="viewer" class="viewer-iframe" />
 </div>
 
 <style>

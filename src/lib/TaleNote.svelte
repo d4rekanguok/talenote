@@ -5,6 +5,7 @@
 	import ListComponent from '$lib/ListComponent.svelte';
 	import EditorProps from '$lib/EditorProps.svelte';
 	import Viewer from '$lib/Viewer.svelte';
+	import Logo from '$lib/Logo.svelte';
 
 	export let getComponentName = (v) => v;
 	export let viewerWidthPreset = [360, 480, 720, 900, 1200];
@@ -18,13 +19,16 @@
 
 <main>
 	<div data-grid="container" class="container">
-		<section data-grid="a" class="section-list">
+		<section data-grid="a">
+			<Logo />
+		</section>
+		<section data-grid="b" class="section-list">
 			<ListComponent {getComponentName} />
 		</section>
-		<section data-grid="b" class="section-props">
+		<section data-grid="c" class="section-props">
 			<EditorProps {viewEl} />
 		</section>
-		<section data-grid="c" class="viewer-container">
+		<section data-grid="d" class="viewer-container">
 			<Viewer {viewerWidthPreset} bind:viewEl />
 		</section>
 	</div>
@@ -55,14 +59,15 @@
 	}
 
 	div[data-grid='container'] {
-		padding: 1rem 1rem 0;
+		padding: 0 1rem;
 		display: grid;
 		grid-template-columns: minmax(20%, 360px) 1fr;
-		grid-template-rows: 1fr 1fr;
+		grid-template-rows: 3rem 1fr 1fr;
 		grid-gap: 1rem;
 		grid-template-areas:
-			'a c'
-			'b c';
+			'a d'
+			'b d'
+			'c d';
 	}
 
 	section[data-grid='a'] {
@@ -75,6 +80,10 @@
 
 	section[data-grid='c'] {
 		grid-area: c;
+	}
+
+	section[data-grid='d'] {
+		grid-area: d;
 	}
 
 	.container {

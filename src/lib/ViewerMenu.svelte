@@ -4,6 +4,7 @@
 	export let allowCustomWidth;
 	export let setAllowCustomWidth;
 	export let viewerWidthPreset;
+	export let backgroundColor;
 </script>
 
 <menu class="menu">
@@ -25,13 +26,24 @@
 	{#if allowCustomWidth}
 		<input class="input-width" type="number" bind:value={viewerWidth} />
 	{/if}
+	<span class="divider" aria-hidden></span>
+	<input class="input-width" type="text" bind:value={backgroundColor} />
 </menu>
 
 <style>
 	.menu {
 		display: inline-flex;
 		gap: 0.25rem;
+		align-items: center;
 	}
+
+	.divider {
+		height: 2rem;
+		width: 1px;
+		background-color: var(--color-gray-300);
+		margin: 0 0.75rem;
+	}
+
 	.btn-width {
 		border: none;
 		border-radius: 4px;
