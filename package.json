@@ -1,6 +1,6 @@
 {
   "name": "talenote",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "scripts": {
     "dev": "svelte-kit dev -p 3444",
     "build": "svelte-kit build",
