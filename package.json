@@ -1,6 +1,6 @@
 {
   "name": "talenote",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "dev": "svelte-kit dev -p 3444",
     "build": "svelte-kit build",
@@ -36,7 +36,6 @@
   "dependencies": {
     "@crownframework/svelte-error-boundary": "^1.0.3",
     "lowdb": "^3.0.0",
-    "modern-normalize": "^1.1.0",
     "nanoid": "^3.2.0"
   }
 }
