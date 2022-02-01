@@ -7,27 +7,27 @@
 	export let backgroundColor;
 </script>
 
-<menu class="menu">
+<menu class="tn-menu">
 	<button
-		class="btn-width"
-		class:highlight={!viewerWidth && !allowCustomWidth}
+		class="tn-btn-width"
+		class:tn-highlight={!viewerWidth && !allowCustomWidth}
 		on:click={setViewerWidth(null)}>Full</button
 	>
 	{#each viewerWidthPreset as w (w)}
 		<button
 			on:click={setViewerWidth(w)}
-			class="btn-width"
-			class:highlight={w === viewerWidth && !allowCustomWidth}>{w}</button
+			class="tn-btn-width"
+			class:tn-highlight={w === viewerWidth && !allowCustomWidth}>{w}</button
 		>
 	{/each}
-	<button class="btn-width" class:highlight={allowCustomWidth} on:click={setAllowCustomWidth}
+	<button class="tn-btn-width" class:tn-highlight={allowCustomWidth} on:click={setAllowCustomWidth}
 		>Custom</button
 	>
 	{#if allowCustomWidth}
-		<input class="input-width" type="number" bind:value={viewerWidth} />
+		<input class="tn-input-width" type="number" bind:value={viewerWidth} />
 	{/if}
-	<span class="divider" aria-hidden />
-	<input class="input-width" type="text" bind:value={backgroundColor} />
+	<span class="tn-divider" aria-hidden />
+	<input class="tn-input-width" type="text" bind:value={backgroundColor} />
 </menu>
 
 <style>
@@ -35,20 +35,20 @@
 		font-size: 1rem;
 	}
 
-	.menu {
+	.tn-menu {
 		display: inline-flex;
 		gap: 0.25rem;
 		align-items: center;
 	}
 
-	.divider {
+	.tn-divider {
 		height: 2rem;
 		width: 1px;
 		background-color: var(--tale-color-bg-c);
 		margin: 0 0.75rem;
 	}
 
-	.btn-width {
+	.tn-btn-width {
 		border: none;
 		border-radius: 4px;
 		padding: 0 0.6rem;
@@ -60,7 +60,7 @@
 		height: 2.25rem;
 	}
 
-	.input-width {
+	.tn-input-width {
 		height: 2.25rem;
 		border: 1px solid var(--tale-color-bg-c);
 		color: var(--tale-color-fg-a);
@@ -70,20 +70,20 @@
 		width: 6rem;
 	}
 
-	.input-width:focus,
-	.input-width:hover {
+	.tn-input-width:focus,
+	.tn-input-width:hover {
 		background-color: var(--tale-color-bg-b);
 	}
 
-	.btn-width:hover {
+	.tn-btn-width:hover {
 		background-color: var(--tale-color-bg-b);
 	}
 
-	.btn-width:focus {
+	.tn-btn-width:focus {
 		box-shadow: var(--tale-ring-main);
 	}
 
-	.btn-width.highlight {
+	.tn-btn-width.tn-highlight {
 		background-color: var(--tale-color-bg-c);
 		color: var(--tale-color-fg-a);
 	}

@@ -18,17 +18,17 @@
 </script>
 
 <main>
-	<div data-grid="container" class="container">
-		<section data-grid="a">
+	<div data-tn-grid="container" class="tn-container">
+		<section data-tn-grid="a">
 			<Logo />
 		</section>
-		<section data-grid="b" class="section-list">
+		<section data-tn-grid="b" class="tn-section-list">
 			<ListComponent {getComponentName} />
 		</section>
-		<section data-grid="c" class="section-props">
+		<section data-tn-grid="c" class="tn-section-props">
 			<EditorProps {viewEl} />
 		</section>
-		<section data-grid="d" class="viewer-container">
+		<section data-tn-grid="d" class="tn-viewer-container">
 			<Viewer {viewerWidthPreset} bind:viewEl />
 		</section>
 	</div>
@@ -106,7 +106,7 @@
 		}
 	}
 
-	div[data-grid='container'] {
+	div[data-tn-grid='container'] {
 		padding: 0 1rem;
 		display: grid;
 		grid-template-columns: minmax(20%, 360px) 1fr;
@@ -118,27 +118,27 @@
 			'c d';
 	}
 
-	section[data-grid='a'] {
+	section[data-tn-grid='a'] {
 		grid-area: a;
 	}
 
-	section[data-grid='b'] {
+	section[data-tn-grid='b'] {
 		grid-area: b;
 	}
 
-	section[data-grid='c'] {
+	section[data-tn-grid='c'] {
 		grid-area: c;
 	}
 
-	section[data-grid='d'] {
+	section[data-tn-grid='d'] {
 		grid-area: d;
 	}
 
-	.container {
+	.tn-container {
 		height: 100vh;
 	}
 
-	.viewer-container {
+	.tn-viewer-container {
 		align-self: stretch;
 		flex: 1;
 		display: flex;
@@ -150,18 +150,18 @@
 		border-top-right-radius: 20px;
 	}
 
-	.section-list {
+	.tn-section-list {
 		overflow-y: scroll;
 		border-bottom: 1px solid var(--tale-color-bg-c);
 	}
 
-	.section-props {
+	.tn-section-props {
 		display: inline-flex;
 		flex-direction: column;
 	}
 
-	.section-props,
-	.section-list {
+	.tn-section-props,
+	.tn-section-list {
 		padding: 0 0.25rem;
 	}
 </style>

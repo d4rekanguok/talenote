@@ -37,7 +37,7 @@
 	$: actualWidth = fullscreen ? '100vw' : viewerWidth ? viewerWidth + 'px' : `100%`;
 </script>
 
-<div class="viewer-menu">
+<div class="tn-viewer-menu">
 	<Menu
 		{...{
 			setViewerWidth,
@@ -50,8 +50,8 @@
 	/>
 </div>
 <div
-	class="container-iframe"
-	class:fullscreen
+	class="tn-container-iframe"
+	class:tn-fullscreen={fullscreen}
 	on:mouseenter={() => (isVisibleFS = true)}
 	on:mouseleave={() => (isVisibleFS = false)}
 	style:width={actualWidth}
@@ -66,12 +66,12 @@
 		bind:this={viewEl}
 		src={componentUrl}
 		title="viewer"
-		class="viewer-iframe"
+		class="tn-viewer-iframe"
 	/>
 </div>
 
 <style>
-	.viewer-menu {
+	.tn-viewer-menu {
 		height: 3rem;
 		top: 0;
 		position: sticky;
@@ -82,13 +82,13 @@
 		justify-content: center;
 	}
 
-	.container-iframe {
+	.tn-container-iframe {
 		position: relative;
 		height: 100%;
 		width: 100%;
 	}
 
-	.viewer-iframe {
+	.tn-viewer-iframe {
 		width: 100%;
 		height: 100%;
 		border-top-left-radius: 10px;
@@ -97,7 +97,7 @@
 		border: 1px solid var(--tale-color-gray-300);
 	}
 
-	.container-iframe.fullscreen {
+	.tn-container-iframe.tn-fullscreen {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -106,7 +106,7 @@
 		height: 100vh;
 	}
 
-	.container-iframe.fullscreen .viewer-iframe {
+	.tn-container-iframe.tn-fullscreen .tn-viewer-iframe {
 		border-radius: 0;
 	}
 

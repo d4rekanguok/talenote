@@ -69,7 +69,7 @@
 
 <svelte:window on:message={syncComponentProps} />
 
-<main>
+<main class="tn-main">
 	{#if Component}
 		<Boundary onError={console.error}>
 			{#if Wrapper}
@@ -86,7 +86,7 @@
 </main>
 
 <style>
-	main {
+	.tn-main {
 		position: relative;
 		min-height: 100vh;
 		height: 1px;

@@ -1,7 +1,7 @@
-<h1 class="section-header"><slot /></h1>
+<h1 class="tn-section-header"><slot /></h1>
 
 <style>
-	.section-header {
+	.tn-section-header {
 		margin: 0 0 1rem;
 		font-size: 1.25rem;
 		font-weight: bold;

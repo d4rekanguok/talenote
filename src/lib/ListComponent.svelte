@@ -21,16 +21,16 @@
 </script>
 
 <SectionHeader>Components</SectionHeader>
-<ul class="component-list">
+<ul class="tn-component-list">
 	{#each $state.componentNames as name (name)}
-		<li class="component-item" class:active={name === $state.currentComponentName}>
+		<li class="tn-component-item" class:active={name === $state.currentComponentName}>
 			<details>
-				<summary class="component-name">{getComponentName(name) || ''}</summary>
-				<ul class="tale-list">
-					<li class="tale">
+				<summary class="tn-component-name">{getComponentName(name) || ''}</summary>
+				<ul class="tn-tale-list">
+					<li class="tn-tale">
 						<button
-							class="tale-name"
-							class:active={$state.currentTaleId === '' &&
+							class="tn-tale-name"
+							class:tn-active={$state.currentTaleId === '' &&
 								$state.currentComponentName === name}
 							on:click={setCurrentComponentTale(name)}>Default props</button
 						>
@@ -38,15 +38,15 @@
 					{#if $tales[name]}
 						{#each $tales[name] as { _taleid, _talename } (_taleid)}
 							{@const active = _taleid === $state.currentTaleId}
-							<li class="tale">
+							<li class="tn-tale">
 								<button
-									class="tale-name"
-									class:active
+									class="tn-tale-name"
+									class:tn-active={active}
 									aria-label={`Open "${_talename}"`}
 									on:click={setCurrentComponentTale(name, _taleid)}>{_talename || _taleid}</button
 								>
 								<button
-									class="btn-delete"
+									class="tn-btn-delete"
 									aria-label={`Delete "${_talename}"`}
 									on:click={handleDeleteTaleById(_taleid)}>&times;</button
 								>
@@ -68,17 +68,17 @@
 		font-size: 1rem;
 	}
 	
-	.component-list {
+	.tn-component-list {
 		padding: 0;
 		margin: 0;
 		list-style-type: none;
 	}
 
-	.component-item {
+	.tn-component-item {
 		padding: 0.25rem 0;
 	}
 
-	.component-name {
+	.tn-component-name {
 		appearance: none;
 		border: none;
 		background: none;
@@ -90,40 +90,40 @@
 		color: var(--tale-color-fg-b);
 	}
 
-	.tale-list {
+	.tn-tale-list {
 		margin: 0.25rem 0;
 		padding: 0 0 0 1rem;
 	}
 
-	.tale {
+	.tn-tale {
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
 		justify-content: space-between;
 	}
 
-	.btn-delete {
+	.tn-btn-delete {
 		color: var(--tale-color-danger-b);
 		background-color: var(--tale-color-danger-a);
 		padding: 0.5rem 0.75rem;
 	}
 
-	.tale .btn-delete {
+	.tn-tale .tn-btn-delete {
 		opacity: 0;
 	}
 
-	.tale:hover .btn-delete {
+	.tn-tale:hover .tn-btn-delete {
 		opacity: 1;
 	}
 
-	.tale-name,
-	.btn-delete {
+	.tn-tale-name,
+	.tn-btn-delete {
 		border: none;
 		font-weight: normal;
 		border-radius: 4px;
 	}
 
-	.tale-name {
+	.tn-tale-name {
 		text-align: left;
 		flex: 1;
 		padding: 0.5rem;
@@ -131,13 +131,13 @@
 		color: var(--tale-color-fg-b);
 	}
 
-	.tale-name:hover,
-	.component-name:hover {
+	.tn-tale-name:hover,
+	.tn-component-name:hover {
 		color: var(--tale-color-fg-a);
 		background-color: var(--tale-color-bg-b);
 	}
 
-	.tale button.active {
+	.tn-tale button.tn-active {
 		font-weight: 600;
 		color: var(--tale-color-main-a);
 	}

@@ -1,11 +1,11 @@
-<div class="center">
-	<div class="inner">
+<div class="tn-center">
+	<div class="tn-inner">
 		<slot />
 	</div>
 </div>
 
 <style>
-	.center {
+	.tn-center {
 		position: relative;
 		display: flex;
 		height: 100%;

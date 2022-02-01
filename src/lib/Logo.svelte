@@ -1,5 +1,5 @@
-<div class="wrapper-logo">
-	<div class="logo">
+<div class="tn-wrapper-logo">
+	<div class="tn-logo">
 		<svg
 			width={32}
 			height={32}
@@ -44,13 +44,13 @@
 </div>
 
 <style>
-    .logo {
+    .tn-logo {
         display: inline-flex;
         align-items: center;
         gap: 0.25rem;
     }
 
-	.wrapper-logo {
+	.tn-wrapper-logo {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -62,12 +62,12 @@
 		border-bottom-right-radius: 8px;
 	}
 
-	.wrapper-logo:hover {
+	.tn-wrapper-logo:hover {
 		color: var(--tale-color-bg-a);
 		background-color: var(--tale-color-fg-a);
 	}
 
-	.wrapper-logo svg {
+	.tn-wrapper-logo svg {
 		fill: var(--tale-color-bg-a);
 	}
 </style>

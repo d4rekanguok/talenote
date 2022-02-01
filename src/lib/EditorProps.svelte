@@ -95,35 +95,35 @@
 	};
 </script>
 
-<header class="header">
+<header class="tn-header">
 	<SectionHeader>Props</SectionHeader>
 </header>
 {#if displayProps}
 	<form
 		bind:this={formEl}
 		on:keydown={handleSubmitOnCmdEnter}
-		class="form"
+		class="tn-form"
 		on:input|preventDefault={handlePropsUpdate}
 		on:submit|preventDefault={handleCreateTale}
 	>
 		<input
-			class="props-name"
+			class="tn-props-name"
 			placeholder={'Give this set of props a name'}
 			bind:value={taleName}
 			type="text"
 			name="propTitle"
 		/>
-		<textarea spellcheck={false} name="propContent" class="props-editor">{displayProps}</textarea>
+		<textarea spellcheck={false} name="propContent" class="tn-props-editor">{displayProps}</textarea>
 		{#if error}
 			<div class="container-error">
 				{error}
 			</div>
 		{/if}
-		<div class="container-btn">
-			<button type="button" on:click={handleReset} class="btn-reset">Reset</button>
+		<div class="tn-container-btn">
+			<button type="button" on:click={handleReset} class="tn-btn-reset">Reset</button>
 			<div>
-				<span class="submit-hint">cmd + enter</span>
-				<button type="submit" class="btn-submit">New Tale</button>
+				<span class="tn-submit-hint">cmd + enter</span>
+				<button type="submit" class="tn-btn-submit">New Tale</button>
 			</div>
 		</div>
 	</form>
@@ -136,20 +136,20 @@
 		box-sizing: border-box;
 	}
 	
-	.header {
+	.tn-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	.form {
+	.tn-form {
 		display: inline-flex;
 		flex-direction: column;
 		flex: 1;
 		padding-bottom: 1rem;
 	}
 
-	.props-name {
+	.tn-props-name {
 		width: 100%;
 		font-size: 1.1rem;
 		margin-bottom: 0.5rem;
@@ -163,11 +163,11 @@
 		border-radius: 8px;
 	}
 
-	.props-name::placeholder {
+	.tn-props-name::placeholder {
 		color: var(--tale-color-fg-c);
 	}
 
-	.props-editor {
+	.tn-props-editor {
 		width: 100%;
 		font-family: monospace;
 		font-size: 1.1rem;
@@ -180,13 +180,13 @@
 		border-radius: 8px;
 	}
 
-	.container-btn {
+	.tn-container-btn {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
 
-	.btn-reset {
+	.tn-btn-reset {
 		border: none;
 		padding: 0.5rem 0.8rem;
 		border-radius: 4px;
@@ -195,11 +195,11 @@
 		color: var(--tale-color-fg-a);
 	}
 
-	.btn-reset:hover {
+	.tn-btn-reset:hover {
 		background-color: var(--tale-color-bg-b);
 	}
 
-	.btn-submit {
+	.tn-btn-submit {
 		padding: 0.5rem 0.8rem;
 		color: var(--tale-color-main-c);
 		border: none;
@@ -208,12 +208,12 @@
 		background-color: var(--tale-color-main-a);
 	}
 
-	.btn-submit:hover {
+	.tn-btn-submit:hover {
 		background-color: var(--tale-color-main-b);
 	}
 
-	.btn-reset:focus,
-	.btn-submit:focus {
+	.tn-btn-reset:focus,
+	.tn-btn-submit:focus {
 		box-shadow: var(--tale-ring-main);
 	}
 
@@ -225,7 +225,7 @@
 		margin-bottom: 0.5rem;
 	}
 
-	.submit-hint {
+	.tn-submit-hint {
 		font-size: 0.9rem;
 		color: var(--tale-color-fg-c);
 		margin-right: 0.25rem;
