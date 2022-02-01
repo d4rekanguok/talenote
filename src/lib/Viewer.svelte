@@ -112,6 +112,7 @@
 
 	.btn-fs {
 		position: absolute;
+		font-size: 1rem;
 		right: 1rem;
 		top: 1rem;
 		border: none;

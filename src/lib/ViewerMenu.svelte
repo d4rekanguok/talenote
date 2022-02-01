@@ -31,6 +31,10 @@
 </menu>
 
 <style>
+	button {
+		font-size: 1rem;
+	}
+
 	.menu {
 		display: inline-flex;
 		gap: 0.25rem;

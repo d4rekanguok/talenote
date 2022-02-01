@@ -60,6 +60,14 @@
 </ul>
 
 <style>
+	summary, details, ul, li {
+		box-sizing: border-box;
+	}
+
+	button {
+		font-size: 1rem;
+	}
+	
 	.component-list {
 		padding: 0;
 		margin: 0;

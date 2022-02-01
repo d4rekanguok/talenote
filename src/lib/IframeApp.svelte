@@ -1,5 +1,4 @@
 <script lang="ts">
-	import 'modern-normalize/modern-normalize.css';
 	// @ts-ignore
 	import { Boundary } from '@crownframework/svelte-error-boundary';
 	import { browser } from '$app/env';

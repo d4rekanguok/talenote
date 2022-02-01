@@ -1,5 +1,5 @@
 <script lang="ts">
-	import 'modern-normalize/modern-normalize.css';
+	// import 'modern-normalize/modern-normalize.css';
 	import { onMount } from 'svelte';
 	import { tales } from '$lib/tales';
 	import ListComponent from '$lib/ListComponent.svelte';
@@ -35,7 +35,17 @@
 </main>
 
 <style>
+	:global(body) {
+		margin: 0;
+	}
+
+	section {
+		box-sizing: border-box;
+	}
+
 	main {
+		font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
 		--tale-color-gray-100: #f1f5f9;
 		--tale-color-gray-300: #cbd5e1;
 		--tale-color-gray-400: #94a3b8;
@@ -46,12 +56,12 @@
 
 		--tale-color-rose-200: #fecdd3;
 		--tale-color-rose-700: #be123c;
-		
+
 		--tale-color-blue-300: #93c5fd;
 		--tale-color-blue-500: #3b82f6;
 		--tale-color-blue-700: #1d4ed8;
 		--tale-color-blue-900: #1e3a8a;
-		
+
 		--tale-color-white: white;
 
 		--tale-color-main-a: var(--tale-color-blue-500);

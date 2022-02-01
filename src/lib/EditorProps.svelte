@@ -132,6 +132,10 @@
 {/if}
 
 <style>
+	input, textarea {
+		box-sizing: border-box;
+	}
+	
 	.header {
 		display: flex;
 		align-items: center;
@@ -186,6 +190,7 @@
 		border: none;
 		padding: 0.5rem 0.8rem;
 		border-radius: 4px;
+		font-size: 1rem;
 		background-color: transparent;
 		color: var(--tale-color-fg-a);
 	}
@@ -198,6 +203,7 @@
 		padding: 0.5rem 0.8rem;
 		color: var(--tale-color-main-c);
 		border: none;
+		font-size: 1rem;
 		border-radius: 4px;
 		background-color: var(--tale-color-main-a);
 	}
