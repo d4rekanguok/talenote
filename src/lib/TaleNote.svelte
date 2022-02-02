@@ -155,6 +155,18 @@
 		border-bottom: 1px solid var(--tale-color-bg-c);
 	}
 
+	.tn-section-list::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	.tn-section-list::-webkit-scrollbar-thumb {
+		background-color: var(--tale-color-fg-c);
+	}
+
+	.tn-section-list::-webkit-scrollbar-track {
+		background-color: var(--tale-color-bg-a);
+	}
+
 	.tn-section-props {
 		display: inline-flex;
 		flex-direction: column;

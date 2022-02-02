@@ -113,7 +113,7 @@
 			type="text"
 			name="propTitle"
 		/>
-		<textarea spellcheck={false} name="propContent" class="tn-props-editor">{displayProps}</textarea>
+		<textarea  spellcheck={false} name="propContent" class="tn-props-editor">{displayProps}</textarea>
 		{#if error}
 			<div class="container-error">
 				{error}
@@ -178,6 +178,19 @@
 		border: none;
 		flex: 1;
 		border-radius: 8px;
+		resize: none;
+	}
+
+	.tn-props-editor::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	.tn-props-editor::-webkit-scrollbar-thumb {
+		background-color: var(--tale-color-fg-c);
+	}
+
+	.tn-props-editor::-webkit-scrollbar-track {
+		background-color: var(--tale-color-bg-b);
 	}
 
 	.tn-container-btn {
